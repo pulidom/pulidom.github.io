@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('../style.css');
+</style>
+</head>
+<body>
+
+<ul  class="navbar">
+  <li class="navbar" style="float:left"> <a href="../index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="../index.html">Home</a></li>
+  <li class="navbar"><a  href="../publications.html">Publications</a></li>
+  <li class="navbar"><a href="../soft.html">Soft</a></li>
+  <li class="navbar"><a href="../blog.html">Blog</a></li>
+  <li class="navbar"><a  href="../about.html">About</a></li>
+</ul>
+  <br>
+<h2>A fortran bug? (or at least a not well documented limitation)</h2>
+<div>
+  Since I spent a significant amount of time, searching for the problem that was causing one of my fortran codes, I think that commenting these things may help others.
+
+ I was using a call like this: 
+    CALL fn(xtmp,xf1,force)
+in which fn was an external defined as lorenz96ss
+
+which was calling to a subroutine with assumed shape dummy arrays:
+  subroutine lorenz96ss(yin,yout,xin)
+    real(8),intent(in) :: yin(:),xin(:)
+    real(8),intent(inout) :: yout(:)
+
+This does not work!!!!!! (fortran 2003 cannot manage the array dimensions in this case) One has to define them explicitly:
+
+    CALL fn(nx,ny ,xtmp,xf1,force)
+
+  subroutine lorenz96ss(ny,nx,yin,yout,xin)
+    integer, intent(in) :: nx,ny
+    real(8),intent(in) :: yin(ny),xin(nx)
+    real(8),intent(inout) :: yout(ny)
+ 
+</div>
+</body>
+</html>

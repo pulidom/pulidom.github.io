@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('../style.css');
+</style>
+</head>
+<body>
+
+<ul  class="navbar">
+  <li class="navbar" style="float:left"> <a href="../index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="../index.html">Home</a></li>
+  <li class="navbar"><a  href="../publications.html">Publications</a></li>
+  <li class="navbar"><a href="../soft.html">Soft</a></li>
+  <li class="navbar"><a href="../blog.html">Blog</a></li>
+  <li class="navbar"><a  href="../about.html">About</a></li>
+</ul>
+  <br>
+<h2>ION: window manager </h2>
+<div>
+
+  <p>
+  ION es un tabbing/tiling window manager para ser manejado completamente por el teclado.</p><p>
+
+Siguiendo algunos de los comentarios y nuevos desarrollos de software debo ser de los pocos usuarios que todavia esta usando el ion (ni siquiera su propio creador, quien enojado con algunas de las politicas de las distribuciones de linux se ha pasado a otro so).
+</p><p>
+
+Porque me gusto? En lugar de ser el usuario es el window manager el que se encarga del tamanho y el lugar de las windows, nosotros solo lo que hacemos es navegar y movernos por distintas ventanas o eventualmetne mover la ventana a otro lugar. Es muy util para tener la pantalla cortada en varias secciones con aplicaciones en cada una de las secciones. Esto permite comparar graficos, codigos, tener la fuente y el pdf de un latex, etc.
+</p><p>
+
+Una Figura de como lo tengo implementado:<br>
+[[/home/pulido/bin/ayu/fig/screen.png]]
+</p><p>
+
+Esto fue un cambio de paradigma, cuando comence tenia definidas mis principales aplicaciones con las teclas Function, creo que ion tiene capacidad para tener una barra de aplicaciones pero dado que el cambio de paradigma era manejar la computadora a traves del teclado y concentrarnos puramente en la aplicacion y no en el administrador de aplicaciones (X-windows), despues de un tiempo finalize con la tecla F1 para crear nuevas shells y luego el resto de las aplicaciones las llamo desde la shells con alias definidos para las aplicaciones que mas utilizo (emacs=e, okular=a, latex+dvips+okular=tex2pdf, thunderbird=t, firefox=f, python=p,...). Mi lista de aplicaciones que uso en el dia-a-dia no supera las 20 por lo que es facil mantener la pequenha tabla de aliases via executable scripts (linkeando y personalizando la aplicacion) o aliases en mi .profile.
+</p><p>
+
+[0] Dado que es necesario definir una meta key que maneje las funciones del administrador X, lo primero es definir cual es la menos utilizada para darle esa funcione (y que no se superponga a las funciones de teclas que ya tienen las aplicaciones). En mi caso aun no se para que viene la tecla windows en los teclados pero es una Meta-Key asi que ideal para manejar al X-windows=ion.<br>
+Esto lo hice agregando en el ~/.ion3/cfg_ion.lua :
+</p><p>
+
+META="Mod4+"<br>
+
+Aproposito, solo dos archivos de configuracion he utilizado para personalizar a ION, cfg_ion.lua y dans_bindings.lua (aunque podrian estar en uno solo)<br>
+</p><p>
+
+[1] Algunas de las personalizaciones realizadas:
+</p><p>
+
+1. Para crear una xterm [F1].<br>
+2. Para correr algun comando directamente [win]+[F1]<br>
+3. Para que largue una terminal con idl [win]+[F2]<br>
+4. Para que largue una window terminal y el diario [win]+[F3]<br>
+5. Para main menu (exit/restart window manager) [F12]<br>
+6. Muestra las screen/workspace activas [F11]<br>
+7. Para crear nuevos workspace [win]+[F11]<br>
+8. Para mostrar la lista de windows [win]+[F10]<br>
+9. Para crear nuevos workspace  [win]+[F9]<br>
+10. Para eliminar workspaces [win] k x<br>
+
+</p><p>
+[2] Para navegar entre ventanas adentro del tile:<br>
+1. [win]+[left] se mueve hacia (enfoca)  la aplicacion de la izquierda dentro del tile<br>
+2. [win]+[right] se mueve hacia  la aplicacion de la derecha dentro del tile<br>
+3. [win]+, mueve a la aplicacion hacia la izquierda dentro del tile.<br>
+3. [win]+. mueve a la aplicacion hacia la derecha dentro del tile.<br>
+</p><p>
+
+[3] Para navegar entre tiles:<br>
+
+[win] + [shift] + [up]/[down]/[right]/[left]. Permite moverse a cualquier tile dentro de la screen.<br>
+
+[4] Para navegar entre workspaces<br>
+
+Estoy usando un concepto de screen 2d<br>
+
+[win] + [ctrl] + [up]/[down]/[right]/[left].<br>
+
+</p><p>
+Tengo 6 workspaces entonces el up y down me suben y bajan de a 2.<br>
+Para mover de izq a derecha va de 1 a 2 y tambien de 3 a 4 de 5 a 6 por loq eu se puede pensar en una forma 2d de las pantallas:<br>
+
+    1    2<br>
+
+    3    4<br>
+
+    5    6   <br>
+
+
+</p><p>
+[5] Para mover una aplicacion a otro lugar
+
+</p><p>
+Based on Copy-paste concept:
+
+</p><p>
+[win]+x sobre la aplicacion, para cortarla del lugar actual.<br>
+[win]+v en el lugar (region de la pantalla) donde se quiera pegar la venta.<br>
+ 
+</div>
+</body>
+</html>

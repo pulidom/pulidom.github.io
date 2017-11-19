@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('../style.css');
+</style>
+</head>
+<body>
+
+<ul  class="navbar">
+  <li class="navbar" style="float:left"> <a href="../index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="../index.html">Home</a></li>
+  <li class="navbar"><a  href="../publications.html">Publications</a></li>
+  <li class="navbar"><a href="../soft.html">Soft</a></li>
+  <li class="navbar"><a href="../blog.html">Blog</a></li>
+  <li class="navbar"><a  href="../about.html">About</a></li>
+</ul>
+  <br>
+<h2> After few years missing her. Thinkpad X1-2017</h2>
+<div>
+  My oak (thinkpad 400) was working from 2008 to 2015, actually it continued working but I changed to zenbook,  during this time  (2015-2017) I have had the feeling that something in my life was lacking, until today that I've got a new thinkpad now the X1-2017. (in the mean time I also had an hp-envy ultrabook which I never used because it was ugly and rather unconfortable to me, particularly the trackpad).<br><br>
+
+After using for a couple of days my new thinkpad, while other notebooks are just that notebooks to me, on the other hand I had the feeling that thinkpads are a sensual joy, or a toy for kids, the feeling goes beyond a work equipment. <br><br> 
+
+Lenovo X1 Carbon 2017 Specifications:<br><br>
+
+Intel Core i7-7500U Processor (4MB Cache, up to 3.5Ghz) - <br>
+16GB LPDDR3 1866 <br>
+1TB Solid State Drive OPAL2.0 PCIe-NVMe - I<br>
+Intel HD Graphics 620 - Hardware dTPM2.0 Enabled -<br> 
+Intel Dual Band Wireless AC(2x2) 8265, Bluetooth Version 4.1 - WLAN antenna -<br> 
+14.0” FHD (1920x1080) IPS, Anti-Glare, non-Touch, <br>
+720p HD Camera, Black - 720p HD Camera with MIC - <br>
+ThinkPad Backlit Keyboard US English with Finger Print Reader and C-cover, Black -<br> 
+Windows 10 Home (payed for something that I will not use)<br>
+
+Media reader. MicroSD card reader, supports UHS-II microSD card<br>
+Ports<br>
+Two USB 3.1 Gen 1 (USB 3.0, one Always On), <br>
+two USB 3.1 Type-C Gen 2 / Thunderbolt 3 (support data, video, and power delivery)
+HDMI 1.4b, <br>
+Ethernet extension connector<br>
+
+  <h2>Instalacion de linux</h2>
+
+  Tuve numerosos inconvenientes en la instalacion de opensuse.<br>
+  
+  1. Genere la iso con rufus en windows (iso image not dd image)
+
+openSUSE-Tumbleweed-DVD-x86_64-Snapshot20170804-Media.iso
+
+  Inicialmente habia grabado desde terminal linux, con dd, y resulta ser la BIOS no detectaba como UEFI medium a mi pen drive, por lo que me creaba particiones non-uefi y el sistema no rebooteaba.<br>
+  <br>
+  
+2. Windows 10 has to be installed.<br>
+
+  
+  First I removed windows 10 and tried to install opensuse alone from scratch, no way to boot in this way (did not reconigce the grub partition or so). I tried a couple of options with windows not installed and the bios tries to change the boot? <br>
+
+  3. I reinstalled window, and then install linux leaving the secure boot on.<br>
+  
+The grub boot with the secure option.<br>
+
+  
+  Recuerda que primero se debe achicar la particion de windows<br>
+  
+ have followed the instructions here, and I successfully shrank my OS partition in about 10 minutes. Running under Windows 10, but I doubt it makes a difference here.<br>
+
+The steps are:<br>
+
+    Disable hibernation. Restart.<br>
+
+    Disable pagefile. Restart.<br>
+
+    Disable system protection. Restart.<br>
+
+Now the three files that were preventing partition reduction are gone. Reduce partition size, and then restore the three items.<br>
+
+Disk defragmentation<br>
+
+Disk management (shrink the partition).<br>
+
+  <h2> Docking station</h2>
+
+  I bought a Lenovo ThunderBolt-3 Docking station<br>
+
+  If you have problem with your devices (mouse and keyboard), have a look at this site: 
+<a href="https://forums.lenovo.com/t5/Linux-Discussion/ThunderBolt-3-Dockingstation-and-Linux/td-p/3671481"> details on lenovo thunderbolt-3 docking station under linux</a>
+
+  Tuve que habilitar en la bios el Support in preboot environment, y tambien desabilitar la seguridad para que anden el mouse y el teclado en la docking station.<br>
+
+  Ojo con las conexiones solo una thunberbold es la que puede alimentar a la Laptop.<br>
+
+  Lamentablemente no he logrado hacer funcionar los auriculares desde la docking station.<br>
+
+I am using a wifi connection but has read that others have problems with the ethernet port<br>
+</div>
+</body>
+</html>

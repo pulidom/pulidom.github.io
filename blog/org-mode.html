@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('../style.css');
+</style>
+</head>
+<body>
+
+<ul  class="navbar">
+  <li class="navbar" style="float:left"> <a href="../index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="../index.html">Home</a></li>
+  <li class="navbar"><a  href="../publications.html">Publications</a></li>
+  <li class="navbar"><a href="../soft.html">Soft</a></li>
+  <li class="navbar"><a href="../blog.html">Blog</a></li>
+  <li class="navbar"><a  href="../about.html">About</a></li>
+</ul>
+  <br>
+<h2>org-mode</h2>
+<div>
+I do not remember how I arrive to org-mode, guess looking for an ascii text agenda. Soon I realized that org-mode is much more than that, I finished using it for any note I need in my computer (from README files, history files, agenda, reports, etc still not using it for latex and code files but it could be also possible). After reading a couple of wonderfull blogs/articles http://doc.norang.ca/org-mode.html (a long time ago that was about 2012 reading now my first org-mode notes of my agenda).
+<br>
+<br>
+
+
+<h3>Shortcuts</h3>
+  
+TAB Abre y cierra la presente seccion<br>
+S-TAB Abre y cierra todas las secciones<br>
+C-c . Agrega una time stamp (activa)<br>
+C-c ! Agrega una time stamp (pasiva)<br>
+S-left/right Para moverme en un dia en el calendario<br>
+S-up/down Para moverme una semana en el calendario<br>
+<br>
+C-c C-d Deadline<br>
+C-c C-s Scheduled<br>
+<br>
+C-c C-d Calendar<br>
+C-c C-t Rotate TODO-DONE (para poner en DONE los items que estaban con TODO) En la Agenda solo poner t<br>
+C-c a Agenda (a para display el dia)<br>
+C-c C-x C-i o  I en la Agenda para largar el reloj <br>
+C-c C-x C-o o  O en la agenda para salir del reloj (cuenta cuanto tiempo se gasta en una actividad).<br>
+<br>
+C-c C-o Sigue un link<br>
+<br>
+C-c C-x C-a  Archiva un item en el archive file<br>
+C-c C-x C-s  Archiva un subtree en el archive file<br>
+<br>
+C-c RET Aparece un headline con la date y hora (para dejar marcado cuando se realizo el comentario).<br>
+<br>
+M-enter Agrega un headline del nivel que se viene trabajando con una timestamp.<br>
+<br>
+C-c C-q Incluye un tag, hay que poner la primera inicial y luego return<br>
+<br>
+<h3> CLOCKING TIME</h3>
+Window+i (C-c C-x i) larga el reloj, I en la Agenda<br>
+Window+o (C-c C-x o) larga el reloj, O en la Agenda<br>
+Window+p (C-u C-c C-x C-i) muestra los ultimos tasks clockeados<br>
+Window+u muestra menu de times<br>
+C-c C-c  Recalcula los tiempos (si hemos cambiado a mano los tiempos).<br>
+<br>
+Start clock: Si pone que no puede cargar el reloj es porque ha quedado alguno abierto (puede ser de otra sesion).<br>
+<br>
+Le puse un <br>
+#+STARTUP: lognoteclock-out<br>
+al diary de esta manera cuando hace el clockout te pide para que le pongas una nota (me gusta para poner en que se uso el tiempo, es un reporte muy cortito con lo que se hizo)<br>
+
+<h3>Hora actual</h3>
+C-u C-c . Pone el date y la hora actual (activo)<br>
+Window+e C-u C-c ! Pone el date y la hora actual (inactivo)<br>
+
+<br>
+Descripcion de un termino: '::' - TODO :: listado de actividades a realizar<br>
+<br>
+<h3>Links</h3>
+<br>
+External Links:<br>
+<br>
+[[link][descripcion]] [[link]]<br>
+[[file:/home/pulido/org/diary.org]]<br>
+<br>
+#+BEGIN_LaTeX<br>
+[[link][descripcion]]<br>
+Ej.<br>
+[[/home/pulido/org/diary.org][Agenda]]<br>
+#+END_LaTeX<br>
+<br>
+Internal links en el documento:<br>
+<br>
+[[voy alla]]   <<voy alla>>
+<br>
+*** capture tags. 
+<br>
+Son notas que se hacen de TODOs o algo que viene a la cabeza pero que no corresponde a lo qeu se esta trabajando.<br>
+C-c c to start capture mode and select t since it's a new task and I get a buffer like this: <br>
+<br>
+org-agenda-files le dice en que archivos buscar las timestamps que van a parecer en la agenda<br>
+
+!* TODO <br>
+  [2010-08-05 Thu 21:06] Hacer caca<br>
+ Enter the details of the TODO item and C-c C-c to file it away in refile.org (este ultimo es el archivo donde se guardaran los capture tags)
+<br>
+Para mirar valores de variables o customizarlas:<br>
+<br>
+M-x describe-variable [RET] variable (describe la variable)<br>
+M-x customize-variable [RET]<br>
+<br>
+*** TIMER<br>
+C-c C-x 0 Para largar el timer  <br>
+C-c C-x . Para que aparezca cuantos minutos lleva el timer en el archivo
+C-c C-x , Pause el timer o continue.<br>
+C-c C-x ; Comienza timer negativo. Por ejemplo de 60 min para atras.<br>
+<br>
+*** Mover cosas<br>
+<br>
+ shift + flechas sobre la fecha se puede cambiar los dias hacia atras o adelante.<br>
+ alta + flechas puede cambiar de lugar un item en el file hacia arriba o hacia abajo (util para llevar los todos a lo ultimo)<br>
+
+<br>
+*** Tablas<br>
+<br>
+| Caqu |   Ca | Caqu + Ca | Caqu^2 | Caqu^2 + Caqu |<br>
+|    1 | 4.52 |      5.52 |      1 |             2 |<br>
+|    2 | 3.52 |      5.52 |      4 |             6 |<br>
+|    3 | 2.24 |      5.24 |      9 |            12 |<br>
+|    4 |  1.8 |       5.8 |     16 |            20 |<br>
+|------+------+-----------+--------+---------------|<br>
+#+TBLFM: $3=$1+$2::$4=$1^2::$5=$4+$1<br>
+CTRL+c + CTRL +c aplica las formulas a la tabla y saca resultados. Hay que pararse en el comando de calculo.<br>
+CTRL+c * para cada linea hace los calculos<br>
+<br>
+<br>
+
+
+*** Aviso de Deadlines:<br>
+<br>
+(setq org-deadline-warning-days 5) Dias antes que avisa<br>
+</div>
+</body>
+</html>
