@@ -26,6 +26,19 @@ def unif(x,xmin,xmax):
     res[idx] = 1./len(idx[0]) #(xmax-xmin)
     return res
 
+def sparseH(nx,Rfac,salto):
+    ny=nx/salto
+    if nx%salto != 0:
+        ny=ny+1
+    H=np.zeros([ny,nx])
+    iy=0
+    # put in each position of the observations
+    for ix in range(nx):
+        if ix%salto == 0:
+            H[iy,ix]=1
+            iy+=1                
+    return H
+
 class Plot:
     def __init__(self):
         self.it=0
