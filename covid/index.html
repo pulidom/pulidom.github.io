@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('./style.css');
+</style>
+</head>
+<body>
+
+<ul class="navbar"  >
+  <li class="navbar" style="float:left"> <a href="index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="index.html">Home</a></li>
+  <li class="navbar"><a href="publications.html">Publications</a></li>
+  <li class="navbar"><a href="research.html">Research</a></li>
+  <li class="navbar"><a href="soft.html">Soft</a></li>
+  <li class="navbar"><a href="blog.html">Blog</a></li>
+  <li class="navbar"><a  href="about.html">About</a></li>
+</ul>
+
+
+
+<h2> Asimilaci&oacute;n de datos COVID-19 y predicciones probabil&iacute;sticas en  Argentina </h2>
+
+Mostramos algunos resultados preliminares del uso de t&eacute;cnicas de la asimilaci&oacute;n de datos para el procesamiento de datos COVID-19 y su predicci&oacute;n probabil&iacute;stica.
+<br>
+
+Una de las principales ventajas de las t&eacute;cnicas de asimilaci&oacute;n de datos es que podemos inferir el estado oculto a partir de observaciones parciales y con incertezas. La t&eacute;cnica asimilaci&oacute;n de datos permite combinar  modelos epidemiol&oacute;gicos con distintas fuentes de observaciones cuantificando la incertezas en las predicciones del modelo y en la estimaci&oacute;n del estado oculto.
+<br>
+
+En particular combinamos un modelo SEIR con el filtro de Kalman por ensambles (EnKF) usando la t&eacute;cnica basada en el estado aumentado para la estimaci&oacute;n de los par&aacute;metros.
+<br>
+
+
+  <div class="article_content">
+    <p><img src="assim-argentina.png" align="left" width="640" style="padding-right:40px;"/>
+
+	      <br clear="left"/></p>
+      
+    (a) Observaciones del n&uacute;mero de infectados (puntos naranja) y el n&uacute;mero de infectados estimados con asimilaci&oacute;n de datos (l&iacute;nea celeste). Las l&iacute;neas grises muestran el ensamble el cual esta representando la incerteza en la predicci&oacute;n. Para las fechas en las cuales aun no hay observaciones, se realiza una predicci&oacute;n con el conjunto de los &uacute;ltimos par&aacute;metros estimados y la &uacute;ltima estimaci&oacute;n del ensamble de estados escondidos. El primer d&iacute;a corresponde al 3 de Marzo.  <br>
+    (b) N&uacute;mero de reproducci&oacute;n estimado con la t&eacute;cnica de asimilaci&oacute;n de datos y su incerteza.
+
+  </div>
+	      <br>
+
+	      <h2> Asimilaci&oacute;n de datos y predicci&oacute;n probabil&iacute;stica de COVID-19 en algunas provincias argentinas </h2>
+
+<a href="provincias-0508.csv"> Este es el archivo </a>, que estamos usando, con el n&uacute;mero de infectados en las provincias argentinas en formato csv. Ultima actualizaci&oacute;n el 9 de Mayo. 
+
+    <p><img src="assim-provba.png" align="left" width="640" style="padding-right:40px;"/>
+
+      <br clear="left"/></p>
+    Provincia de Buenos Aires.
+    <p><img src="assim-ciudba.png" align="left" width="640" style="padding-right:40px;"/>
+     Ciudad de Buenos Aires.
+	      <br clear="left"/></p>
+    <p><img src="assim-chaco.png" align="left" width="640" style="padding-right:40px;"/>
+      Provincia Chaco
+	      <br clear="left"/></p>
+    <p><img src="assim-corrientes.png" align="left" width="640" style="padding-right:40px;"/>
+      Provincia Corrientes
+
+	      <br clear="left"/></p>
+NOTA: Estamos asimilando solo el n&uacute;mero de infectados asi que la estimaci&oacute;n y predicci&oacute;n es restringida a estos datos.<br>
+
+<br>
+Ulima actualizaci&oacute;n 8 de Mayo.
+</body>
+</html>
