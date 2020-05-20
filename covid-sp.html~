@@ -60,7 +60,9 @@ SEIR model combined with EnKF with the augmented state approach.
       Provincia Corrientes
 
 	      <br clear="left"/></p>
+NOTE: We are only assimilating infected number so that the estimation and prediction is constrained to those data.<br>
 
+<br>
 Last update May 8.
 </body>
 </html>
