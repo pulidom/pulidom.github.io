@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('./style.css');
+</style>
+</head>
+<body>
+
+<ul class="navbar"  >
+  <li class="navbar" style="float:left"> <a href="index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="index.html">Home</a></li>
+  <li class="navbar"><a href="publications.html">Publications</a></li>
+  <li class="navbar"><a href="research.html">Research</a></li>
+  <li class="navbar"><a  class="active" href="soft.html">Soft</a></li>
+  <li class="navbar"><a href="blog.html">Blog</a></li>
+  <li class="navbar"><a  href="about.html">About</a></li>
+</ul>
+
+
+  
+<h2>COVID-19 data assimilation and probabilistic prediction in Argentina </h2>
+
+Some early results using data assimilation techniques for COVID-19 data processing and prediction. 
+<br>
+
+One of the main advantages of data assimilation techniques is that we can infer a hidden state from partial observations. The data assimilation technique combines epidemiological models and several sources of observations quantifying the uncertainty in the model predictions and the hidden state estimation.  
+<br>
+
+SEIR model combined with EnKF with the augmented state approach.
+<br>
+
+
+  <div class="article_content">
+    <p><img src="assim-argentina.png" align="left" width="640" style="padding-right:40px;"/>
+
+	      <br clear="left"/></p>
+      
+    (a) Observations of the infected number (orange dots) and the estimated infected number with data assimilation (cyan line). Gray lines show the ensemble representing the uncertainty of the estimation. For dates where there are no observations yet, a prediction is conductd with the last set of estimated parameters and started from the last estimated hidden state. First day corresponds to March 3rd. <br>
+    (b) Reproduction number estimated with the data assimilation technique and its uncertainty.
+</div>
+	      <br>
+
+	      <h2>COVID-19 data assimilation and probabilistic prediction in Argentinean provincias </h2>
+
+<a href="provincias-0508.csv"> This is the file</a>, we are using, with infected numbers in the Argentinean provinces in csv format.  Updated May 8
+
+    <p><img src="assim-provba.png" align="left" width="640" style="padding-right:40px;"/>
+
+      <br clear="left"/></p>
+    Provincia de Buenos Aires.
+    <p><img src="assim-ciudba.png" align="left" width="640" style="padding-right:40px;"/>
+     Ciudad de Buenos Aires.
+	      <br clear="left"/></p>
+    <p><img src="assim-chaco.png" align="left" width="640" style="padding-right:40px;"/>
+      Provincia Chaco
+	      <br clear="left"/></p>
+    <p><img src="assim-corrientes.png" align="left" width="640" style="padding-right:40px;"/>
+      Provincia Corrientes
+
+	      <br clear="left"/></p>
+
+Last update May 8.
+</body>
+</html>
