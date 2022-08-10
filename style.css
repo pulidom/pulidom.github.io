@@ -1,15 +1,15 @@
 /* stylesheet  */
 
 /* https://www.w3schools.com/css/css_navbar.asp */
-/***  PAGE LAYOUT  ***/
+/***  PAGE LAYOUT  #abb8c3***/
 
 html, body {
    font-size: 1em;
    text-align: left;
    text-decoration: none;
 }
-html { background-color: #e7e7e7; }
-
+html { background-color: #c0c0c0;  }
+/*  #645861; #abb8c3   #e7e7e7; #c0c0c0 */
 body {
    max-width: 40.96em;
    margin: 5.0em auto;
