@@ -1,0 +1,67 @@
+# Hey Emacs, this is a -*- org -*- file ...
+#+TITLE:    Estructura servidores CECONEA
+#+DESCRIPTION: Instrucciones basicas de uso
+#+KEYWORDS:  syntax, org, document
+
+#+SETUPFILE: /home/pulido/alm/soft/org-html-themes/org/theme-readtheorg-local.setup
+
+#+PROPERTY:  header-args :eval never-export
+
+** Definicion estructura servidores de computo y almacenamiento
+
+|--------+----------------------+------------------+--------------+--------------+-------+--------------------|
+| Nick   | Tipo servidor        | Especificicacion |   IP interno | NFS          | Capac |                    |
+|--------+----------------------+------------------+--------------+--------------+-------+--------------------|
+| sun    | publico 200.45.54.94 | sun opteron      | 10.11.12.101 |              |       |                    |
+| grial  | central/computo      | i9/10c/GPU/128gb |   10.11.12.1 | /home        | 800gb |                    |
+|        | NIS/DHCP/HOME        |                  |              | /mnt/grial_1 | 3.4Tb | simulaciones       |
+|        | Red Salida           |                  |              | /mnt/grial_2 | 3.4Tb | simulaciones       |
+|        | 10.40.60.228         |                  |              | /mnt/grial_3 | 800Gb | simulaciones       |
+| grial2 | computo              | i7/6c/GPU/64gb   |   10.11.12.2 |              |       |                    |
+| grial3 | computo              | i7/8c/GPU/128gb  |   10.11.12.3 |              |       |                    |
+| ypy    | almacenamiento       | SuperMicro-24d   |   10.11.12.4 | /mnt/ypy_1   | 22Tb  | simul (lleno)      |
+| ypy2   | almacenamiento       | i7               |   10.11.12.5 | /mnt/ypy2_1  | 7.2Tb | ERA-ECMWF          |
+|        |                      |                  |              | /mnt/ypy2_2  | 7.2Tb | MERRA-NASA         |
+| ypy3   | almacenamiento       | i7               |   10.11.12.6 | /mnt/ypy3_1  | TBC   | RADAR/SIMULACIONES |
+|        |                      |                  |              | /mnt/ypy3_2  | TBC   |                    |
+|--------+----------------------+------------------+--------------+--------------+-------+--------------------|
+
+
+*** Servidores 
+
+|----------+-----------------+------------------+--------------+--------------+-----------------------------|
+| Nick     | Tipo servidor   | Especificicacion |   IP interno |   IP externo | Funcion                     |
+|----------+-----------------+------------------+--------------+--------------+-----------------------------|
+| sun      | publico         | sun opteron      | 10.11.12.101 | 200.45.54.94 | SSH/VPN/HTTP/GIT            |
+| grial    | central/computo | i9/10c/GPU/128gb |   10.11.12.1 | 10.40.60.228 | NIS/DHCP/HOME/PYTHON/F90/ML |
+| grial2   | computo         | i7/6c/GPU/64gb   |   10.11.12.2 |              | PYTHON/F90/ML               |
+| grial3   | computo         | i7/8c/GPU/128gb  |   10.11.12.3 |              | PYTHON/F90/ML               |
+| ypy      | almacenamiento  | SuperMicro-24d   |   10.11.12.4 | 10.40.60.229 | NFS                         |
+| ypy2     | almacenamiento  | i7               |   10.11.12.5 |              | NFS                         |
+| ypy3     | almacenamiento  | i7               |   10.11.12.6 |              | NFS                         |
+|----------+-----------------+------------------+--------------+--------------+-----------------------------|
+| sun02-11 | cluster computo | sun-Opteron      |      101-112 |              | F90/MPI                     |
+|----------+-----------------+------------------+--------------+--------------+-----------------------------|
+| huayra   | cluster computo | ARM-Xeon         |      121-129 |              | F90/MPI                     |
+|----------+-----------------+------------------+--------------+--------------+-----------------------------|
+| huayra   | Cluster computo | Supermicro-Xeon  |      131-146 |              | En mantenimiento Update SO  |
+|----------+-----------------+------------------+--------------+--------------+-----------------------------|
+
+
+*** Servidores de almacenamiento. Datos
+
+|-------+--------------+--------+---------------+----------------|
+| Nick  | NFS          | Capac  | Uso           | Disponibilidad |
+|-------+--------------+--------+---------------+----------------|
+| grial | /home        | 800gb  | home          | Max 40Gb !!!   |
+|       | /mnt/grial_1 | 3.4Tb  | simulaciones  | Libre          |
+|       | /mnt/grial_2 | 3.4Tb  | simulaciones  | Libre          |
+|       | /mnt/grial_3 | 800Gb  | back up       | No             |
+|       | /mnt/grial_4 | 17.2Tb | back up       | No             |
+| ypy   | /mnt/ypy_1   | 22.0Tb | simul (lleno) | No             |
+| ypy2  | /mnt/ypy2_1  | 7.2Tb  | ERA-ECMWF     | Solo lectura   |
+|       | /mnt/ypy2_2  | 7.2Tb  | MERRA-NASA    | Lectura        |
+| ypy3  | /mnt/ypy3_1  | TBC    | RADAR         | Lectura        |
+|       | /mnt/ypy3_2  | TBC    | simulaciones  | Libre          |
+|-------+--------------+--------+---------------+----------------|
+
