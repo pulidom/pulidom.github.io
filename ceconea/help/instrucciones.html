@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-03 Wed 17:54 -->
+<!-- 2023-08-03 Thu 16:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instrucciones CECONEA</title>
-<meta name="author" content="Pulido Manuel" />
+<meta name="author" content="pulido" />
 <meta name="description" content="Instrucciones basicas de uso" />
 <meta name="keywords" content="syntax, org, document" />
 <meta name="generator" content="Org Mode" />
@@ -25,20 +25,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf255ba0">1. Estructura del cluster</a></li>
-<li><a href="#org6a5c632">2. Instrucciones ingresar al CECONEA</a></li>
-<li><a href="#org5261c8d">3. Ingresar directamente a la grial</a></li>
-<li><a href="#org2cff633">4. ssh sin claves.</a></li>
-<li><a href="#org0f5a210">5. Correr en python en background</a></li>
-<li><a href="#orga3cea30">6. Como correr jupyter en el CECONEA</a></li>
-<li><a href="#org1d2cb2d">7. Como correr jupyter desde el GICA</a></li>
-<li><a href="#orga732606">8. Datos y recursos disponibles</a></li>
-<li><a href="#orgac57f1d">9. Virtual environment para Machine learning</a></li>
+<li><a href="#org6b00d71">1. Estructura del cluster</a></li>
+<li><a href="#orga655102">2. Instrucciones ingresar al CECONEA</a></li>
+<li><a href="#orge5b1f13">3. Ingresar directamente a la grial</a></li>
+<li><a href="#org3e3ff4a">4. ssh sin claves.</a></li>
+<li><a href="#org38f0089">5. Correr en python en background</a></li>
+<li><a href="#org36edecb">6. screen multiplexer</a>
+<ul>
+<li><a href="#orge141c02">6.1. Los principales shortcuts de screen</a></li>
+<li><a href="#orgb38d9e1">6.2. Correr simulaciones en background con screen</a></li>
+<li><a href="#orgeb0af30">6.3. Correr screen por default con el ssh</a></li>
+</ul>
+</li>
+<li><a href="#org8e2ba3a">7. Como correr jupyter en el CECONEA</a></li>
+<li><a href="#orgb757199">8. Como correr jupyter desde el GICA</a></li>
+<li><a href="#orge76d0af">9. Datos y recursos disponibles</a></li>
+<li><a href="#org78d49e2">10. Virtual environment para Machine learning</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf255ba0" class="outline-2">
-<h2 id="orgf255ba0"><span class="section-number-2">1.</span> Estructura del cluster</h2>
+<div id="outline-container-org6b00d71" class="outline-2">
+<h2 id="org6b00d71"><span class="section-number-2">1.</span> Estructura del cluster</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Si se quiere ver los recursos disponibles, servidores y demas estructura:
@@ -50,8 +57,8 @@ Si se quiere ver los recursos disponibles, servidores y demas estructura:
 </div>
 </div>
 
-<div id="outline-container-org6a5c632" class="outline-2">
-<h2 id="org6a5c632"><span class="section-number-2">2.</span> Instrucciones ingresar al CECONEA</h2>
+<div id="outline-container-orga655102" class="outline-2">
+<h2 id="orga655102"><span class="section-number-2">2.</span> Instrucciones ingresar al CECONEA</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Para logearse al sistema:
@@ -99,8 +106,8 @@ Hay dos cosas que pueden ayudar para evitar meterse a una maquina y luego a la o
 </div>
 
 
-<div id="outline-container-org5261c8d" class="outline-2">
-<h2 id="org5261c8d"><span class="section-number-2">3.</span> Ingresar directamente a la grial</h2>
+<div id="outline-container-orge5b1f13" class="outline-2">
+<h2 id="orge5b1f13"><span class="section-number-2">3.</span> Ingresar directamente a la grial</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Es posible realizar un tunel para ingresar/trabajar directamente a la grial, en lugar de tener que ingresar a la sun y luego a la grial.
@@ -130,8 +137,8 @@ y luego se puede acceder a la grial  directamente a traves del puerto 12342:
 </div>
 </div>
 
-<div id="outline-container-org2cff633" class="outline-2">
-<h2 id="org2cff633"><span class="section-number-2">4.</span> ssh sin claves.</h2>
+<div id="outline-container-org3e3ff4a" class="outline-2">
+<h2 id="org3e3ff4a"><span class="section-number-2">4.</span> ssh sin claves.</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Si vamos a trabajar seguido en forma remota se vuelve engorroso estar permanentemente metiendo los passwords cada vez que queremos conectarnos a una terminal del servidor remoto.
@@ -189,8 +196,8 @@ Tambien se puede poner en el inicio de la sesion de xwindows.  Una posibilidad e
 </div>
 </div>
 
-<div id="outline-container-org0f5a210" class="outline-2">
-<h2 id="org0f5a210"><span class="section-number-2">5.</span> Correr en python en background</h2>
+<div id="outline-container-org38f0089" class="outline-2">
+<h2 id="org38f0089"><span class="section-number-2">5.</span> Correr en python en background</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Para dejar corriendo aplicaciones despues de desloggearse, sin que se nos corte la ejecucion cuando salimos del sistema. Hay que hacer:
@@ -221,9 +228,92 @@ nohup python3 $<span style="color: #eedd82;">filename</span>.py &gt; $<span styl
 </div>
 </div>
 
-<div id="outline-container-orga3cea30" class="outline-2">
-<h2 id="orga3cea30"><span class="section-number-2">6.</span> Como correr jupyter en el CECONEA</h2>
+<div id="outline-container-org36edecb" class="outline-2">
+<h2 id="org36edecb"><span class="section-number-2">6.</span> screen multiplexer</h2>
 <div class="outline-text-2" id="text-6">
+<p>
+Una alternativa a correr en background es usar screen. screen tiene varias funcionalidades la mas importante es que nos permite trabajar con multiples terminales a la vez en una sola ventana.
+Se accede por:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">screen
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge141c02" class="outline-3">
+<h3 id="orge141c02"><span class="section-number-3">6.1.</span> Los principales shortcuts de screen</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+C-a c  crea una ventana nueva
+C-a n  Switch to the next window.
+C-a p  Switch to the previous window
+C-a S  Split the current region into two new ones.
+C-a w  Show a list of windows.
+C-a X  Kill the current region.
+C-a tab Switch the input focus to the next region.
+C-a "   Present  a list of all windows for selection.
+</p>
+
+<p>
+Listado de las shells y el estado: `screen -ls`
+</p>
+
+<p>
+Para poner el directorio actual como de trabajo (para abrir nuevas shells): `screen -X eval "chdir $PWD"`
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb38d9e1" class="outline-3">
+<h3 id="orgb38d9e1"><span class="section-number-3">6.2.</span> Correr simulaciones en background con screen</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Para dejar una corrida corriendo y cerrar el screen:
+`Ctrl+a d  detach`
+</p>
+
+<p>
+Luego cuando se abre se puede listar las terminales que tengo abiertas:
+`screen -ls`
+</p>
+
+<p>
+Luego para attach:
+`screen -r 2477.pts-0.server1`
+</p>
+
+<p>
+En general yo lo abro con los modificadores:
+`screen -DRRq &amp;`
+</p>
+
+<p>
+Esto hace que me reattachee todo lo que tenia antes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeb0af30" class="outline-3">
+<h3 id="orgeb0af30"><span class="section-number-3">6.3.</span> Correr screen por default con el ssh</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+La opcion recomendada es:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">ssh -t host.example.com screen -DRRq &amp;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org8e2ba3a" class="outline-2">
+<h2 id="org8e2ba3a"><span class="section-number-2">7.</span> Como correr jupyter en el CECONEA</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Sin en lugar de tener un script python tenemos una jupyter notebook, Lo que queremos es correrla en el servidor y poder un servidor remoto con port forwarding, pero accediendo desde el browser local. Veamos las instrucciones para hacer esto.
 </p>
@@ -263,7 +353,7 @@ Copiar el token que aparece.
 <ol class="org-ol">
 <li><p>
 En la maquina local en el browser:
-<a href="http://localhost:8888/?token=8d186032bbbe095b294789e863b065a546fcc15b68683c99">http://localhost:8888/?token=8d186032bbbe095b294789e863b065a546fcc15b68683c99</a>
+<a href="http://localhost:8889/?token=8d186032bbbe095b294789e863b065a546fcc15b68683c99">http://localhost:8889/?token=8d186032bbbe095b294789e863b065a546fcc15b68683c99</a>
 </p>
 
 <p>
@@ -281,9 +371,9 @@ Para mas detalle ver referencia:
 </div>
 </div>
 
-<div id="outline-container-org1d2cb2d" class="outline-2">
-<h2 id="org1d2cb2d"><span class="section-number-2">7.</span> Como correr jupyter desde el GICA</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgb757199" class="outline-2">
+<h2 id="orgb757199"><span class="section-number-2">8.</span> Como correr jupyter desde el GICA</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 Hacer en la maquina local:
 </p>
@@ -298,7 +388,7 @@ Esto permite abrir una conexion a grial (con port forwarding al puerto 8080). En
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">grial:~$ jupyter notebook --no-browser
+<pre class="src src-bash">grial:~$ jupyter notebook --no-browser --port=8080
 </pre>
 </div>
 
@@ -317,13 +407,16 @@ y pastear en el browser local (firefox o lo que sea)
 <p>
 Bingo! Estamos corriendo cosas de jupyter en grial con conexion en la maquina local.
 </p>
+
+<p>
+Si nos dice que el puerto esta en uso:  The port 8080 is already in use, trying another port. probar con el puerto recomendado (o con puertos alternativos 8081 8888  8889)
+</p>
 </div>
 </div>
 
-
-<div id="outline-container-orga732606" class="outline-2">
-<h2 id="orga732606"><span class="section-number-2">8.</span> Datos y recursos disponibles</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orge76d0af" class="outline-2">
+<h2 id="orge76d0af"><span class="section-number-2">9.</span> Datos y recursos disponibles</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 En el directorio:
 </p>
@@ -338,15 +431,15 @@ Se encuentran los links a todos los datos disponibles.
 </div>
 </div>
 
-<div id="outline-container-orgac57f1d" class="outline-2">
-<h2 id="orgac57f1d"><span class="section-number-2">9.</span> Virtual environment para Machine learning</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org78d49e2" class="outline-2">
+<h2 id="org78d49e2"><span class="section-number-2">10.</span> Virtual environment para Machine learning</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 La version de python por default en grial es la python 3.6.13. Esta tiene todas las librerias de machine learning instaladas.
 </p>
 
 <p>
-Si se quiere trabajar en versiones mas nuevas hay un par de virtual enviroments en <i>usr/loca</i>
+Si se quiere trabajar en versiones mas nuevas hay un par de virtual enviroments en <i>usr/local</i>
 </p>
 
 
@@ -372,8 +465,8 @@ Para trabajar en ese enviroment se debe hacer
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Pulido Manuel</p>
-<p class="date">Created: 2023-05-03 Wed 17:54</p>
+<p class="author">Author: pulido</p>
+<p class="date">Created: 2023-08-03 Thu 16:19</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
