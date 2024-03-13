@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-08-03 Thu 16:19 -->
+<!-- 2023-11-16 Thu 10:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instrucciones CECONEA</title>
-<meta name="author" content="pulido" />
+<meta name="author" content="Pulido" />
 <meta name="description" content="Instrucciones basicas de uso" />
 <meta name="keywords" content="syntax, org, document" />
 <meta name="generator" content="Org Mode" />
@@ -25,27 +25,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6b00d71">1. Estructura del cluster</a></li>
-<li><a href="#orga655102">2. Instrucciones ingresar al CECONEA</a></li>
-<li><a href="#orge5b1f13">3. Ingresar directamente a la grial</a></li>
-<li><a href="#org3e3ff4a">4. ssh sin claves.</a></li>
-<li><a href="#org38f0089">5. Correr en python en background</a></li>
-<li><a href="#org36edecb">6. screen multiplexer</a>
+<li><a href="#orgd70427e">1. Estructura del cluster</a></li>
+<li><a href="#orge7da9af">2. Instrucciones ingresar al CECONEA</a></li>
+<li><a href="#org2dcb63f">3. Ingresar directamente a la grial</a></li>
+<li><a href="#orga3fd28e">4. ssh sin claves.</a></li>
+<li><a href="#org8066cb4">5. Correr en python en background</a></li>
+<li><a href="#org2a4d097">6. screen multiplexer</a>
 <ul>
-<li><a href="#orge141c02">6.1. Los principales shortcuts de screen</a></li>
-<li><a href="#orgb38d9e1">6.2. Correr simulaciones en background con screen</a></li>
-<li><a href="#orgeb0af30">6.3. Correr screen por default con el ssh</a></li>
+<li><a href="#org6830e58">6.1. Los principales shortcuts de screen</a></li>
+<li><a href="#org3cb8e03">6.2. Correr simulaciones en background con screen</a></li>
+<li><a href="#orgb2851bf">6.3. Correr screen por default con el ssh</a></li>
 </ul>
 </li>
-<li><a href="#org8e2ba3a">7. Como correr jupyter en el CECONEA</a></li>
-<li><a href="#orgb757199">8. Como correr jupyter desde el GICA</a></li>
-<li><a href="#orge76d0af">9. Datos y recursos disponibles</a></li>
-<li><a href="#org78d49e2">10. Virtual environment para Machine learning</a></li>
+<li><a href="#org67a6364">7. Como correr jupyter en el CECONEA</a></li>
+<li><a href="#org8756cba">8. Como correr jupyter desde el GICA</a></li>
+<li><a href="#org1c71772">9. Datos y recursos disponibles</a></li>
+<li><a href="#orgf0f7fa6">10. Virtual environment para Machine learning</a></li>
+<li><a href="#org009a1e1">11. Como conectarse con VSCODE desde windows</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b00d71" class="outline-2">
-<h2 id="org6b00d71"><span class="section-number-2">1.</span> Estructura del cluster</h2>
+<div id="outline-container-orgd70427e" class="outline-2">
+<h2 id="orgd70427e"><span class="section-number-2">1.</span> Estructura del cluster</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Si se quiere ver los recursos disponibles, servidores y demas estructura:
@@ -57,8 +58,8 @@ Si se quiere ver los recursos disponibles, servidores y demas estructura:
 </div>
 </div>
 
-<div id="outline-container-orga655102" class="outline-2">
-<h2 id="orga655102"><span class="section-number-2">2.</span> Instrucciones ingresar al CECONEA</h2>
+<div id="outline-container-orge7da9af" class="outline-2">
+<h2 id="orge7da9af"><span class="section-number-2">2.</span> Instrucciones ingresar al CECONEA</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Para logearse al sistema:
@@ -106,8 +107,8 @@ Hay dos cosas que pueden ayudar para evitar meterse a una maquina y luego a la o
 </div>
 
 
-<div id="outline-container-orge5b1f13" class="outline-2">
-<h2 id="orge5b1f13"><span class="section-number-2">3.</span> Ingresar directamente a la grial</h2>
+<div id="outline-container-org2dcb63f" class="outline-2">
+<h2 id="org2dcb63f"><span class="section-number-2">3.</span> Ingresar directamente a la grial</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Es posible realizar un tunel para ingresar/trabajar directamente a la grial, en lugar de tener que ingresar a la sun y luego a la grial.
@@ -137,8 +138,8 @@ y luego se puede acceder a la grial  directamente a traves del puerto 12342:
 </div>
 </div>
 
-<div id="outline-container-org3e3ff4a" class="outline-2">
-<h2 id="org3e3ff4a"><span class="section-number-2">4.</span> ssh sin claves.</h2>
+<div id="outline-container-orga3fd28e" class="outline-2">
+<h2 id="orga3fd28e"><span class="section-number-2">4.</span> ssh sin claves.</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Si vamos a trabajar seguido en forma remota se vuelve engorroso estar permanentemente metiendo los passwords cada vez que queremos conectarnos a una terminal del servidor remoto.
@@ -196,8 +197,8 @@ Tambien se puede poner en el inicio de la sesion de xwindows.  Una posibilidad e
 </div>
 </div>
 
-<div id="outline-container-org38f0089" class="outline-2">
-<h2 id="org38f0089"><span class="section-number-2">5.</span> Correr en python en background</h2>
+<div id="outline-container-org8066cb4" class="outline-2">
+<h2 id="org8066cb4"><span class="section-number-2">5.</span> Correr en python en background</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Para dejar corriendo aplicaciones despues de desloggearse, sin que se nos corte la ejecucion cuando salimos del sistema. Hay que hacer:
@@ -228,8 +229,8 @@ nohup python3 $<span style="color: #eedd82;">filename</span>.py &gt; $<span styl
 </div>
 </div>
 
-<div id="outline-container-org36edecb" class="outline-2">
-<h2 id="org36edecb"><span class="section-number-2">6.</span> screen multiplexer</h2>
+<div id="outline-container-org2a4d097" class="outline-2">
+<h2 id="org2a4d097"><span class="section-number-2">6.</span> screen multiplexer</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Una alternativa a correr en background es usar screen. screen tiene varias funcionalidades la mas importante es que nos permite trabajar con multiples terminales a la vez en una sola ventana.
@@ -241,8 +242,8 @@ Se accede por:
 </div>
 </div>
 
-<div id="outline-container-orge141c02" class="outline-3">
-<h3 id="orge141c02"><span class="section-number-3">6.1.</span> Los principales shortcuts de screen</h3>
+<div id="outline-container-org6830e58" class="outline-3">
+<h3 id="org6830e58"><span class="section-number-3">6.1.</span> Los principales shortcuts de screen</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 C-a c  crea una ventana nueva
@@ -265,8 +266,8 @@ Para poner el directorio actual como de trabajo (para abrir nuevas shells): `scr
 </div>
 </div>
 
-<div id="outline-container-orgb38d9e1" class="outline-3">
-<h3 id="orgb38d9e1"><span class="section-number-3">6.2.</span> Correr simulaciones en background con screen</h3>
+<div id="outline-container-org3cb8e03" class="outline-3">
+<h3 id="org3cb8e03"><span class="section-number-3">6.2.</span> Correr simulaciones en background con screen</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Para dejar una corrida corriendo y cerrar el screen:
@@ -294,8 +295,8 @@ Esto hace que me reattachee todo lo que tenia antes.
 </div>
 </div>
 
-<div id="outline-container-orgeb0af30" class="outline-3">
-<h3 id="orgeb0af30"><span class="section-number-3">6.3.</span> Correr screen por default con el ssh</h3>
+<div id="outline-container-orgb2851bf" class="outline-3">
+<h3 id="orgb2851bf"><span class="section-number-3">6.3.</span> Correr screen por default con el ssh</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 La opcion recomendada es:
@@ -311,8 +312,8 @@ La opcion recomendada es:
 
 
 
-<div id="outline-container-org8e2ba3a" class="outline-2">
-<h2 id="org8e2ba3a"><span class="section-number-2">7.</span> Como correr jupyter en el CECONEA</h2>
+<div id="outline-container-org67a6364" class="outline-2">
+<h2 id="org67a6364"><span class="section-number-2">7.</span> Como correr jupyter en el CECONEA</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Sin en lugar de tener un script python tenemos una jupyter notebook, Lo que queremos es correrla en el servidor y poder un servidor remoto con port forwarding, pero accediendo desde el browser local. Veamos las instrucciones para hacer esto.
@@ -371,8 +372,8 @@ Para mas detalle ver referencia:
 </div>
 </div>
 
-<div id="outline-container-orgb757199" class="outline-2">
-<h2 id="orgb757199"><span class="section-number-2">8.</span> Como correr jupyter desde el GICA</h2>
+<div id="outline-container-org8756cba" class="outline-2">
+<h2 id="org8756cba"><span class="section-number-2">8.</span> Como correr jupyter desde el GICA</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Hacer en la maquina local:
@@ -414,8 +415,8 @@ Si nos dice que el puerto esta en uso:  The port 8080 is already in use, trying 
 </div>
 </div>
 
-<div id="outline-container-orge76d0af" class="outline-2">
-<h2 id="orge76d0af"><span class="section-number-2">9.</span> Datos y recursos disponibles</h2>
+<div id="outline-container-org1c71772" class="outline-2">
+<h2 id="org1c71772"><span class="section-number-2">9.</span> Datos y recursos disponibles</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 En el directorio:
@@ -431,8 +432,8 @@ Se encuentran los links a todos los datos disponibles.
 </div>
 </div>
 
-<div id="outline-container-org78d49e2" class="outline-2">
-<h2 id="org78d49e2"><span class="section-number-2">10.</span> Virtual environment para Machine learning</h2>
+<div id="outline-container-orgf0f7fa6" class="outline-2">
+<h2 id="orgf0f7fa6"><span class="section-number-2">10.</span> Virtual environment para Machine learning</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 La version de python por default en grial es la python 3.6.13. Esta tiene todas las librerias de machine learning instaladas.
@@ -463,10 +464,64 @@ Para trabajar en ese enviroment se debe hacer
 </div>
 </div>
 </div>
+
+<div id="outline-container-org009a1e1" class="outline-2">
+<h2 id="org009a1e1"><span class="section-number-2">11.</span> Como conectarse con VSCODE desde windows</h2>
+<div class="outline-text-2" id="text-11">
+<ol class="org-ol">
+<li>Instalar la extensión "Remote - SSH".</li>
+<li>Presionar F1 y abrir la opción "Remote-SSH: Open SSH configuration file"</li>
+<li>Una vez en el archivo configuramos la conexión</li>
+</ol>
+
+<pre class="example">
+
+ost NOMBRE_QUE_LE_ASIGNAMOS_SERVER_EXTERNO
+HostName 200.45.54.94
+User TU_USER
+Host NOMBRE_QUE_LE_ASIGNAMOS_SERVER_INTERNO
+HostName 10.11.12.60
+User TU_USER
+Port 22
+ProxyJump NOMBRE_QUE_LE_ASIGNAMOS_SERVER_EXTERNO
+Host NOMBRE_QUE_LE_ASIGNAMOS_SERVER_INTERNO
+HostName huayra
+User TU_USER
+Port 22
+ProxyJump NOMBRE_QUE_LE_ASIGNAMOS_SERVER_EXTERNO
+</pre>
+
+
+<p>
+Utilizando el ProxyJump, estamos utilizando al servidor que coloquemos como intermediario
+para conectarnos al siguiente servidor, de forma tal que es lo mismo que conectarnos mediante SSH a el intermediario y luego un SSH al servidor final.
+</p>
+
+<p>
+En esa configuración tenemos, en orden, el servidor externo configurado (en el caso del
+CECONEA es el sun), luego configuramos dos servidores mas, internos, vemos que se puede
+colocar tanto la IP del servidor como el alias asignado.
+</p>
+
+<ol class="org-ol">
+<li>Ahora solo resta conectarse al servidor que configuramos: Apretamos F1 y seleccionamos</li>
+</ol>
+<p>
+"Remote-SSH: Connect to &#x2026;".
+</p>
+<ol class="org-ol">
+<li>Al conectarse te va a pedir que especifiques el OS del equipo al que te conectas,</li>
+</ol>
+<p>
+password en caso de ser necesaria y demas información que se suele pedir en una conexión
+SSH.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: pulido</p>
-<p class="date">Created: 2023-08-03 Thu 16:19</p>
+<p class="author">Author: Pulido</p>
+<p class="date">Created: 2023-11-16 Thu 10:04</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
