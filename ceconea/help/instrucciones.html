@@ -3,20 +3,198 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-11-16 Thu 10:04 -->
+<!-- 2024-10-18 Fri 13:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Instrucciones CECONEA</title>
-<meta name="author" content="Pulido" />
+<meta name="author" content="Pulido Manuel" />
 <meta name="description" content="Instrucciones basicas de uso" />
 <meta name="keywords" content="syntax, org, document" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/readtheorg.css"/>
-<script type="text/javascript" src="src/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="src/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="src/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="src/readtheorg_theme/js/readtheorg.js"></script>
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
 </head>
 <body>
 <div id="content" class="content">
@@ -25,29 +203,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd70427e">1. Estructura del cluster</a></li>
-<li><a href="#orge7da9af">2. Instrucciones ingresar al CECONEA</a></li>
-<li><a href="#org2dcb63f">3. Ingresar directamente a la grial</a></li>
-<li><a href="#orga3fd28e">4. ssh sin claves.</a></li>
-<li><a href="#org8066cb4">5. Correr en python en background</a></li>
-<li><a href="#org2a4d097">6. screen multiplexer</a>
-<ul>
-<li><a href="#org6830e58">6.1. Los principales shortcuts de screen</a></li>
-<li><a href="#org3cb8e03">6.2. Correr simulaciones en background con screen</a></li>
-<li><a href="#orgb2851bf">6.3. Correr screen por default con el ssh</a></li>
+<li><a href="#org765a2b8">0.1. Estructura del cluster</a></li>
+<li><a href="#orgbbb5bab">0.2. Instrucciones ingresar al CECONEA</a></li>
+<li><a href="#org4a8b1c1">0.3. Ingresar directamente a la grial</a></li>
+<li><a href="#org65098de">0.4. ssh sin claves.</a></li>
+<li><a href="#orgc275550">0.5. Correr en python en background</a></li>
+<li><a href="#org6b5901a">0.6. screen multiplexer</a></li>
+<li><a href="#org6d13550">0.7. Como correr jupyter en el CECONEA</a></li>
+<li><a href="#org0434ea9">0.8. Como correr jupyter desde el GICA</a></li>
+<li><a href="#orgb59176e">0.9. Datos y recursos disponibles</a></li>
+<li><a href="#orgd61f5f2">0.10. Virtual environment para Machine learning</a></li>
+<li><a href="#org908ff64">0.11. Como conectarse con VSCODE desde windows</a></li>
 </ul>
 </li>
-<li><a href="#org67a6364">7. Como correr jupyter en el CECONEA</a></li>
-<li><a href="#org8756cba">8. Como correr jupyter desde el GICA</a></li>
-<li><a href="#org1c71772">9. Datos y recursos disponibles</a></li>
-<li><a href="#orgf0f7fa6">10. Virtual environment para Machine learning</a></li>
-<li><a href="#org009a1e1">11. Como conectarse con VSCODE desde windows</a></li>
+<li><a href="#orgbfc75fd">1. Python</a>
+<ul>
+<li><a href="#orgb780ee6">1.1. Paralelizacion de "ciclos" en python</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd70427e" class="outline-2">
-<h2 id="orgd70427e"><span class="section-number-2">1.</span> Estructura del cluster</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org765a2b8" class="outline-3">
+<h3 id="org765a2b8"><span class="section-number-3">0.1.</span> Estructura del cluster</h3>
+<div class="outline-text-3" id="text-0-1">
 <p>
 Si se quiere ver los recursos disponibles, servidores y demas estructura:
 </p>
@@ -58,9 +235,9 @@ Si se quiere ver los recursos disponibles, servidores y demas estructura:
 </div>
 </div>
 
-<div id="outline-container-orge7da9af" class="outline-2">
-<h2 id="orge7da9af"><span class="section-number-2">2.</span> Instrucciones ingresar al CECONEA</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgbbb5bab" class="outline-3">
+<h3 id="orgbbb5bab"><span class="section-number-3">0.2.</span> Instrucciones ingresar al CECONEA</h3>
+<div class="outline-text-3" id="text-0-2">
 <p>
 Para logearse al sistema:
 </p>
@@ -107,9 +284,9 @@ Hay dos cosas que pueden ayudar para evitar meterse a una maquina y luego a la o
 </div>
 
 
-<div id="outline-container-org2dcb63f" class="outline-2">
-<h2 id="org2dcb63f"><span class="section-number-2">3.</span> Ingresar directamente a la grial</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org4a8b1c1" class="outline-3">
+<h3 id="org4a8b1c1"><span class="section-number-3">0.3.</span> Ingresar directamente a la grial</h3>
+<div class="outline-text-3" id="text-0-3">
 <p>
 Es posible realizar un tunel para ingresar/trabajar directamente a la grial, en lugar de tener que ingresar a la sun y luego a la grial.
 </p>
@@ -138,9 +315,9 @@ y luego se puede acceder a la grial  directamente a traves del puerto 12342:
 </div>
 </div>
 
-<div id="outline-container-orga3fd28e" class="outline-2">
-<h2 id="orga3fd28e"><span class="section-number-2">4.</span> ssh sin claves.</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org65098de" class="outline-3">
+<h3 id="org65098de"><span class="section-number-3">0.4.</span> ssh sin claves.</h3>
+<div class="outline-text-3" id="text-0-4">
 <p>
 Si vamos a trabajar seguido en forma remota se vuelve engorroso estar permanentemente metiendo los passwords cada vez que queremos conectarnos a una terminal del servidor remoto.
 </p>
@@ -179,7 +356,7 @@ c. Para poner una sola vez la passphase y que despues la recuerde durante la ses
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #00ffff;">exec</span> ssh-agent bash
+<pre class="src src-bash">exec ssh-agent bash
 ssh-add
 </pre>
 </div>
@@ -189,17 +366,17 @@ Tambien se puede poner en el inicio de la sesion de xwindows.  Una posibilidad e
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #b0c4de;">eval</span> <span style="color: #fa8072;">`ssh-agent -s`</span>
-<span style="color: #b0c4de;">export</span> <span style="color: #eedd82;">SSH_ASKPASS</span>=/usr/lib64/ssh/x11-ssh-askpass
+<pre class="src src-bash">eval `ssh-agent -s`
+export SSH_ASKPASS=/usr/lib64/ssh/x11-ssh-askpass
 /usr/bin/ssh-add &lt; /dev/null 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8066cb4" class="outline-2">
-<h2 id="org8066cb4"><span class="section-number-2">5.</span> Correr en python en background</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgc275550" class="outline-3">
+<h3 id="orgc275550"><span class="section-number-3">0.5.</span> Correr en python en background</h3>
+<div class="outline-text-3" id="text-0-5">
 <p>
 Para dejar corriendo aplicaciones despues de desloggearse, sin que se nos corte la ejecucion cuando salimos del sistema. Hay que hacer:
 </p>
@@ -214,24 +391,24 @@ Yo tengo un peque~no script "nohupyt" que guarda la salida y los errores en un a
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash"><span style="color: #ff7f24;">#</span><span style="color: #ff7f24;">!/bin/</span><span style="color: #00ffff;">bash</span>
-<span style="color: #ff7f24;">#</span>
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Manda a ejecutar un python script en batch con el modo nohup y guarda resultados en un file.</span>
-<span style="color: #ff7f24;"># </span><span style="color: #ff7f24;">Uso: nohupyt script.py</span>
-<span style="color: #ff7f24;">#  </span><span style="color: #ff7f24;">Salida  se graba en script.out</span>
-<span style="color: #00ffff;">if</span> [ $<span style="color: #eedd82;">#</span> -eq 1 ]; <span style="color: #00ffff;">then</span>
-    <span style="color: #eedd82;">filename</span>=${<span style="color: #eedd82;">1</span>%.py}
-<span style="color: #00ffff;">fi</span>
+<pre class="src src-bash">#!/bin/bash
+#
+# Manda a ejecutar un python script en batch con el modo nohup y guarda resultados en un file.
+# Uso: nohupyt script.py
+#  Salida  se graba en script.out
+if [ $# -eq 1 ]; then
+    filename=${1%.py}
+fi
 
-nohup python3 $<span style="color: #eedd82;">filename</span>.py &gt; $<span style="color: #eedd82;">filename</span>.out 2&gt;&amp;1 &amp;
+nohup python3 $filename.py &gt; $filename.out 2&gt;&amp;1 &amp;
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org2a4d097" class="outline-2">
-<h2 id="org2a4d097"><span class="section-number-2">6.</span> screen multiplexer</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org6b5901a" class="outline-3">
+<h3 id="org6b5901a"><span class="section-number-3">0.6.</span> screen multiplexer</h3>
+<div class="outline-text-3" id="text-0-6">
 <p>
 Una alternativa a correr en background es usar screen. screen tiene varias funcionalidades la mas importante es que nos permite trabajar con multiples terminales a la vez en una sola ventana.
 Se accede por:
@@ -242,9 +419,9 @@ Se accede por:
 </div>
 </div>
 
-<div id="outline-container-org6830e58" class="outline-3">
-<h3 id="org6830e58"><span class="section-number-3">6.1.</span> Los principales shortcuts de screen</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgdcf3eaf" class="outline-4">
+<h4 id="orgdcf3eaf"><span class="section-number-4">0.6.1.</span> Los principales shortcuts de screen</h4>
+<div class="outline-text-4" id="text-0-6-1">
 <p>
 C-a c  crea una ventana nueva
 C-a n  Switch to the next window.
@@ -266,9 +443,9 @@ Para poner el directorio actual como de trabajo (para abrir nuevas shells): `scr
 </div>
 </div>
 
-<div id="outline-container-org3cb8e03" class="outline-3">
-<h3 id="org3cb8e03"><span class="section-number-3">6.2.</span> Correr simulaciones en background con screen</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-org22e565c" class="outline-4">
+<h4 id="org22e565c"><span class="section-number-4">0.6.2.</span> Correr simulaciones en background con screen</h4>
+<div class="outline-text-4" id="text-0-6-2">
 <p>
 Para dejar una corrida corriendo y cerrar el screen:
 `Ctrl+a d  detach`
@@ -295,9 +472,9 @@ Esto hace que me reattachee todo lo que tenia antes.
 </div>
 </div>
 
-<div id="outline-container-orgb2851bf" class="outline-3">
-<h3 id="orgb2851bf"><span class="section-number-3">6.3.</span> Correr screen por default con el ssh</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-org78ef5f9" class="outline-4">
+<h4 id="org78ef5f9"><span class="section-number-4">0.6.3.</span> Correr screen por default con el ssh</h4>
+<div class="outline-text-4" id="text-0-6-3">
 <p>
 La opcion recomendada es:
 </p>
@@ -312,9 +489,9 @@ La opcion recomendada es:
 
 
 
-<div id="outline-container-org67a6364" class="outline-2">
-<h2 id="org67a6364"><span class="section-number-2">7.</span> Como correr jupyter en el CECONEA</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org6d13550" class="outline-3">
+<h3 id="org6d13550"><span class="section-number-3">0.7.</span> Como correr jupyter en el CECONEA</h3>
+<div class="outline-text-3" id="text-0-7">
 <p>
 Sin en lugar de tener un script python tenemos una jupyter notebook, Lo que queremos es correrla en el servidor y poder un servidor remoto con port forwarding, pero accediendo desde el browser local. Veamos las instrucciones para hacer esto.
 </p>
@@ -372,9 +549,9 @@ Para mas detalle ver referencia:
 </div>
 </div>
 
-<div id="outline-container-org8756cba" class="outline-2">
-<h2 id="org8756cba"><span class="section-number-2">8.</span> Como correr jupyter desde el GICA</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org0434ea9" class="outline-3">
+<h3 id="org0434ea9"><span class="section-number-3">0.8.</span> Como correr jupyter desde el GICA</h3>
+<div class="outline-text-3" id="text-0-8">
 <p>
 Hacer en la maquina local:
 </p>
@@ -415,9 +592,9 @@ Si nos dice que el puerto esta en uso:  The port 8080 is already in use, trying 
 </div>
 </div>
 
-<div id="outline-container-org1c71772" class="outline-2">
-<h2 id="org1c71772"><span class="section-number-2">9.</span> Datos y recursos disponibles</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-orgb59176e" class="outline-3">
+<h3 id="orgb59176e"><span class="section-number-3">0.9.</span> Datos y recursos disponibles</h3>
+<div class="outline-text-3" id="text-0-9">
 <p>
 En el directorio:
 </p>
@@ -432,9 +609,9 @@ Se encuentran los links a todos los datos disponibles.
 </div>
 </div>
 
-<div id="outline-container-orgf0f7fa6" class="outline-2">
-<h2 id="orgf0f7fa6"><span class="section-number-2">10.</span> Virtual environment para Machine learning</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgd61f5f2" class="outline-3">
+<h3 id="orgd61f5f2"><span class="section-number-3">0.10.</span> Virtual environment para Machine learning</h3>
+<div class="outline-text-3" id="text-0-10">
 <p>
 La version de python por default en grial es la python 3.6.13. Esta tiene todas las librerias de machine learning instaladas.
 </p>
@@ -453,21 +630,21 @@ Para trabajar en ese enviroment se debe hacer
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">source /usr/local/ml/<span style="color: #b0c4de;">bin</span>/activate
+<pre class="src src-python">source /usr/local/ml/bin/activate
 </pre>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-python">source /usr/local/ml-p39/<span style="color: #b0c4de;">bin</span>/activate
+<pre class="src src-python">source /usr/local/ml-p39/bin/activate
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org009a1e1" class="outline-2">
-<h2 id="org009a1e1"><span class="section-number-2">11.</span> Como conectarse con VSCODE desde windows</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-org908ff64" class="outline-3">
+<h3 id="org908ff64"><span class="section-number-3">0.11.</span> Como conectarse con VSCODE desde windows</h3>
+<div class="outline-text-3" id="text-0-11">
 <ol class="org-ol">
 <li>Instalar la extensión "Remote - SSH".</li>
 <li>Presionar F1 y abrir la opción "Remote-SSH: Open SSH configuration file"</li>
@@ -518,10 +695,141 @@ SSH.
 </p>
 </div>
 </div>
+
+<div id="outline-container-orgbfc75fd" class="outline-2">
+<h2 id="orgbfc75fd"><span class="section-number-2">1.</span> Python</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgb780ee6" class="outline-3">
+<h3 id="orgb780ee6"><span class="section-number-3">1.1.</span> Paralelizacion de "ciclos" en python</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Se puede utilizar multiprocessing para parelizar ciclos o multiprocesos que dependen de una variable d eentrada. Una de las custiones a tener en cuenta es que solo trabaja con un argumento de entrada y asume que es una lista que la va a distribuir cada elemento en un proceso. Si tengo argumentos de entrada fijos conviene definirlos como variables globales (y la funcion como una funcion local que herede las variables globles). Una segunda opcion es trabajarlo con objetos ver mas adelante para esto. (tambien esta el uso de parcial
+</p>
+
+<p>
+Uno de los detalles a tener en cuenta es el manejo de los numeros aleatorios durante la paralelizacion. Si no lo tenemos en cuenta los distintos hilos nos van a generar los mismos numeros aleatorios, si quiero tener generadores independientes en cada hilo debemos generar semillas independientes para cada hilo. Como se muestra en el ejemplo de abajo.
+</p>
+</div>
+
+<div id="outline-container-org4c6e256" class="outline-4">
+<h4 id="org4c6e256"><span class="section-number-4">1.1.1.</span> Paralelizacion con variables aleatorias</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+<pre class="src src-ipython">import multiprocessing
+
+# defino una lista con multiples argumentos de entrada
+import numpy.random as rnd
+arg=[[Kf,Qf] for Kf in [0.01,0.2,0.4] for Qf in [0.05,2,4]] # argumentos para el multiproc
+for i in range(len(arg)): # add index for the worker seeds
+    arg[i].append(i)
+a=15 # argumento fijo    
+seed=14 #argumento fijo
+def squarefn(arg):
+    return [rnd.randn(1),a+arg[0]**2+arg[1]**2]
+def squarefn2(arg):
+    rnd.seed(seed+arg[2])
+    return [rnd.randn(1),a+arg[0]**2+arg[1]**2]
+
+ncores  = multiprocessing.cpu_count()
+print(ncores)
+res=[]
+with multiprocessing.Pool(ncores) as p:
+    res.append( p.map(squarefn, arg) )
+for res0 in res:
+    print(res0) # notar que repite los numeros aleatorios
+with multiprocessing.Pool(ncores) as p:
+    res.append( p.map(squarefn2, arg) )
+for res0 in res:
+    print(res0) # con esta no los repite
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8cc3746" class="outline-4">
+<h4 id="org8cc3746"><span class="section-number-4">1.1.2.</span> Argumentos fijos de la funcion con partial</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Se puede usar partial para pasarle todos los argumentos fijos y dejar solo el argumento variable
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ipython">def multiproc_map(func,xx,**kwargs):
+  """
+  Multiprocessing.
+  Basically a wrapper for multiprocessing.pool.map(). Deals with
+   - additional, fixed arguments.
+   - KeyboardInterruption (python bug?)
+
+  """
+  NPROC = 2
+  import signal
+  # Parallelization
+  import multiprocessing
+
+  # stackoverflow.com/a/35134329/38281
+  orig = signal.signal(signal.SIGINT, signal.SIG_IGN)
+  pool = multiprocessing.Pool(NPROC)
+  signal.signal(signal.SIGINT, orig)
+  try:
+    # stackoverflow.com/a/5443941/38281
+    f   = functools.partial(func,**kwargs)
+    res = pool.map_async(f, xx)
+    res = res.get(60)
+  except KeyboardInterrupt as e:
+    # Not sure why, but something this hangs,
+    # so we repeat the try-block to catch another interrupt.
+    try:
+      traceback.print_tb(e.__traceback__)
+      pool.terminate()
+      sys.exit(0)
+    except KeyboardInterrupt as e2:
+      traceback.print_tb(e2.__traceback__)
+      pool.terminate()
+      sys.exit(0)
+  else:
+    pool.close()
+  pool.join()
+
+  return res
+
+</pre>
+</div>
+
+<p>
+Para trabajar con objetos se recomienda utilizar la libreria multiprocess (esta trabaja con dill para de/serializar y permite trabajar con objetos jerarquicos mientras multiprocessing trabaja con pickle).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ipython">import multiprocess
+
+class Suma:
+    def  __init__(a=a,seed=seed):
+	self.seed=seed
+	self.a = a
+    def squarefn(arg):
+	rnd.seed(seed+arg[2])
+	return [rnd.randn(1),a+arg[0]**2+arg[1]**2]
+    __call__=squarefn
+arg=[[4,5],[3,2],[7,7]]
+S=Suma(a=5,seed=20)
+res=[]
+with multiprocess.Pool(ncores) as p:
+    res.append( p.map(S.squarefn, arg) )
+
+with multiprocess.Pool(ncores) as p:
+    res.append( p.map(S, arg) )
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Pulido</p>
-<p class="date">Created: 2023-11-16 Thu 10:04</p>
+<p class="author">Author: Pulido Manuel</p>
+<p class="date">Created: 2024-10-18 Fri 13:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
