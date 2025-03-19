@@ -1,6 +1,9 @@
 #----------------------------------------------------------    
 def rk4(mdl,xold):
-    " Runge-Kutta 4th order (time independent)"
+    """ Runge-Kutta 4th order (time independent)
+       mdl es el modelo multiplado por dt 
+       dx/dt= x^2+a x --> mdl=dt*(x^2+a * x)
+    """
 
     dx1 = mdl( xold )
     dx2 = mdl( xold + 0.5 * dx1 )
