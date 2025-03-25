@@ -1,0 +1,137 @@
+#+TITLE: Data assimilation in financial time series data
+#+LATEX_CLASS: myarticle
+#+OPTIONS: toc:nil
+#+STARTUP: inlineimages
+* Exploración de datos
+
+Lectura de la base de datos ~historical_prices.csv~ y eliminación de las series de tiempo que no tienen todos los datos en el rango de tiempos requerido.
+
+Para trabajar con los datos es necesario identificar las tendencias y las perturbaciones a estas. Existen varios metodos para realizar esta separacion de componentes lenta/rapida de la serie de tiempo, por ejemplo a traves de una ventana movil o a traves de Fourier. En este caso vamos a usar un metodo sencillo vamos a realizar un ajuste lineal a traves de un polinomio a la serie de tiempo. 
+
+[[./fig/ts_vars1.png]]
+
+[[./fig/ts_vars2.png]]
+
+Como se puede ver un polinomio de grado 5 es suficiente para eliminar las tendencias (background). Estas fueron realizadas con el ~read_data.py~ funcion ~meanvar_ts~
+
+Como se modela con el modelo dinamico esta media y las perturbaciones sobre esta? quizas se puede pensar en:
+
+\[ x_k = f_p(t_k) + M (x_k - f_p(t_{k-1})) \]
+donde $f_p(t_k)$ es la media obtenida con un polinomio de algun grado (se uso 5). En este caso perdemos todo tipo de sensibilidad a la media. Quizas se pueda trabajar con dos modelos, uno a escala de tiempo cortas mientras otro sea de mas larga escala y tenga que ver mas con las tendencias de largo plazo?
+
+Dado los valores perturbados (sin sus medias) los histogramas resultantes son:
+
+[[./fig/histo_1.png]]
+
+[[./fig/histo_2.png]]
+
+En general la medida de no-gaussianidad medida con la KLD es del orden de 0.05 hay una sola serie (CLMT.O) la cual tiene una KLD=0.13.
+
+
+Series de tiempo de las empresas  mas correlacionadas con la serie de tiempo de Exxon.  Queremos buscar las empresas que brinden informacion predictiva de Exxon. Para el analisis se trabaja con las perturbaciones, como se determinaron con el ajuste polinomico. Otra alternativa es utilizar el logaritmo de las diferencias sucesivas que parece ser bastante popular, sin embargo por lo visto aqui con el filtrado de la media realizado las series tienen un comportamiento muy cercano al gausiano. De hecho como se vera mas abajo, realizar una transformacion de copular Gaussiana a los datos ("normalizacion") no parece tener un impacto apreciable.
+
+
+Correlation
+
+|-------+-------+-------+------------+-----------|
+|   HES |   VLO |   CVX |        EOG |    FANG.O |
+| 0.880 | 0.861 | 0.851 | 0.84672413 | 0.8328526 |
+|-------+-------+-------+------------+-----------|
+
+Mutual information
+
+|-------+-------+-------+-------+-------+
+|   HES |   CVX |   VLO |   EOG |   MPC |
+| 0.903 | 0.895 | 0.826 | 0.768 | 0.739 |
+|-------+-------+-------+-------+-------+
+
+Copula + Mutual information
+
+|-------+-------+-------+-------+--------|
+|   HES |   CVX |   VLO |   EOG | FANG.O |
+| 0.907 | 0.897 | 0.830 | 0.745 |  0.736 |
+|-------+-------+-------+-------+--------|
+
+Transfer Entropy
+
+|-------+-------+-------+-------+-------+
+| GLNG.O |   MPC |   HES |   BTU |   EOG |
+|  0.136 | 0.115 | 0.091 | 0.087 | 0.077 |
+|-------+-------+-------+-------+-------+
+
+Aunque hay algo de sensibilidad y leves diferencias en la medidas se puede concluir que la correlacion, mutual informacion y copula-mutual information dan esencialmente metricas muy parecidas.  En el caso de la transfer entropy (este es un flujo causal, impacto de otra serie sobre la prediccion de Exxon por sobre lo que tiene la propia serie), existen importantes diferencias. La transfer entropy es exactamente igual a la Granger causality cuando las distribuciones son Gaussianas.
+
+Cuanta informacion hay en los dias previos de las otras acciones sobre el valor de la accion de Exxon. Esto lo medimos con Mutual information with time lag (lagged-mi). 
+
+[[./fig/mi_1.png]]
+
+Mientras HES y CVX son las empresas mas correlacionaas con XON en time-lag de 0-1 dia es interesante que VLO posee mayor informacion de XON a 5 dias .
+
+* Predicción usando un HMM estimado con EM-EnKF
+
+#+BEGIN_EXPORT latex
+Proponemos trabajar con un a hidden Markov model para el aprendizaje y prediccion de las series de tiempo, para luego utilizar como fuente de estrategias de inversion. Para esto se selecciona un conjunto peque\~no de variables (precio de cierre de activos) que presenta  mas alta correlacion con la variable de inter\'es por ejemplo ExxonMobil (XOM).
+
+Definimos un hidden Markov model (HMM) lineal o tambi\'en denominado state-space model (SSM) por, una ecuaci\'on de predicci\'on estoc\'astica y un operador observacional estoc\'astico, 
+\[ \v x_{k} = \v M_k \v x_{k-1} + \eta_k, \]
+
+\[ \v y_{k} = \v H \v x_k + \nu_k, \]
+donde $\v x_{k}$ es el estado oculto, $\v y_k$ representa las observaciones del sistema, $\v H$ es el operador de observaci\'on asumido fijo, $\v M_k$ es la matriz de transici\'on, el error de modelo es $\eta_k \sim \mathcal N(\v 0, \v Q)$ y el error observacional $\nu_k \sim \mathcal N(\v 0, \v R)$ asumimos que las covarianzas son estacionarias por el momento (en el rango de tiempos donde estaremos estimando estos par\'ametros).
+
+Del HMM conocemos una serie de tiempos de las observaciones $\v y_{1:K}=\{\v y_1 \cdots \v y_K\}$ y adem\'as conocemos $\v H$ (asumido fijo) mientras el resto de los par\'ametros y variables del HMM son desconocidos, $\v M_k$, $\v R$, $\v Q$, y $\v x_k$ y seran estimados por la metodolog\'ia usando las observaciones.
+
+El modelo estimado usando con 6 meses de datos y se utilizara un par de a~nos para su validacion determinando el retorno. La ventana de observaciones se utilizara en forma movil para ir actualizando los parametros del sistema en forma suave. Hay varios hiperparametros que se pueden optimizar con esta metodologia.
+#+END_EXPORT
+
+** Estimación con el EM-EnKF
+
+#+BEGIN_EXPORT latex
+
+Se propone representar la evoluci\'on del sistema con un HMM/SSM en el cual se utilizar\'a 10 variables de estado. Por otro lado se tienen 6 observaciones (correspondientes a las 6 empresas mas correlacionadas). Es decir que tenemos 4 variables ocultas las cuales tratar\'an de explicar aspectos no predichos con el modelo de Markov de las variables observadas usando tiempos pasados. El modelo din\'amico $\v M_k$ a proponer es un modelo lineal. El $\v H$ es solo una proyecci\'on del estado a las variables observadas.
+
+Se propone trabajar con el filtro de Kalman por ensambles con un estado aumentado. El estado aumentado contiene 110 dimensiones, correspondientes a las variables y a los par\'ametros del modelo $M$ del sistema.
+
+Usando un set de $K$ observaciones pasadas recientes $\v y_{k-l-K}:\v y_{k-l}$, se usa el algoritmo de Expectation-Maximization (acoplados al filtro de Kalman y un smoother) para estimar el $\v Q$ y el $\v R$ del sistema, mientras dentro del estado se estan estimando par\'ametros adaptativos $\v M_k$ y variables $\v x_k$. 
+
+Una vez estimados los par\'ametros se hacen predicciones desde $k-l$ (inicializando a partir del estado $x_{k-l}^a$ y usando el modelo $\v M_{k-l}$) a $k$, $\v x_{k}^f$  estas predicciones se comparan con las observaciones en el mismo tiempo $|\v y_k - \v H \overline{\v x}_{k}^f|$ si estos residuales se encuentran fuera de algun umbral pre-establecido se decide la estrategia de inversi\'on. Considerando que la predicci\'on del modelo es la media del activo y esperando que el activo haga reversi\'on a la media.
+
+Aun no estoy convencido que utilizando diferencias entre dos activos apareados como variables del sistema pueda ser beneficioso para la prediccion en este esquema. Para mi trabajar con diferencias entre las series de tiempo sigue siendo una variable aleatoria y no agrega predictibilidad en el EM comparado a cuando utilizamos las dos variables, asumiendo podemos hacer una buena prediccion de la media de ambas variables y detectar las correlaciones que estas tienen entre si. Si como estrategia de inversion una vez realizada la prediccion por el HMM se podria utilizar el concepto de pair trading.
+
+#+END_EXPORT
+
+** Experimentos
+
+
+*** Linear EM
+
+Uso de 4 variables observadas y una latente. El EM converge adecuadamente usando 200 dias/observaciones. Hay que cambiar de periodo seeguramente el covid introdujo no-estacionaridad (colapso del valor de las petroleras.
+
+[[./fig/linear_em_vars.png]]
+
+La verosimilitud  muestra un consistente creciemiento en las iteraciones del EM (40).
+
+
+*** EM - augmented EnKF. Time-dependent parameters
+Esta explotando. Mucha sensibilidad a parametros iniciales????
+
+** Potenciales experimentos a realizar
+\begin{itemize}
+\item Utilizar un intervalo de tiempos para pre-entrenamiento y luego la estimacion del intervalo actual con condiciones iniciales las estimadas en pre-entrenamiento.
+\item Incorporar una estructura de covarianza que varie en el tiempo, por ejemplo mediante un modelo GARCH,  en $\v P^f$ o en $\v Q$.
+\item Regularizacion del modelo, ya sea asumiendo cambios lentos o asumiendo shrinkage al modelo lineal fijo (Estimado con EM-KF-regresion lineal sobre los 6 meses). 
+\item Modelo con dos escalas de tiempo.
+\end{itemize}
+
+Modelo GARCH:
+
+\begin{equation}
+\sigma_t^2 = \alpha_0 + \sum_{i=1}^{q} \alpha_i \epsilon_{t-i}^2 + \sum_{j=1}^{p} \beta_j \sigma_{t-j}^2
+\end{equation}
+donde $\epsilon_{t}= \sigma_t z_t$,  $z_t\sim\mathcal N(0,1)$, entonces los parametros $\alpha_i$ y $\beta_i$ son los parametros a estimar.
+
+Que otra cosa se puede usar para hacer shrinkage? Referencias de shrinkage en economia:
+
+https://apps.unive.it/server/eventi/26795/2019_JE_bitto_SFS.pd
+https://arxiv.org/pdf/2312.10487
+
+Parsimony inducing priors for large scale state space models Hedibert F. Lopes a b, Robert E. McCulloch a, Ruey S. Tsay c
