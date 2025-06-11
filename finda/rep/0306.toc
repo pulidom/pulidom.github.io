@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}Seleccion de pares de acuerdo al rendimiento}{1}{section.1}%
+\contentsline {section}{\numberline {2}Optimizacion de hyper-parametros}{1}{section.2}%
+\contentsline {section}{\numberline {3}Experimentos}{2}{section.3}%
+\contentsline {section}{\numberline {4}Resultados}{2}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Rendimientos}{2}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Medidas de estacionaridad, vida media etc vs rendimiento.}{3}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Pares con mejores rendimientos}{4}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Parametros optimos}{6}{subsection.4.4}%

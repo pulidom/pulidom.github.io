@@ -1,0 +1,146 @@
+% Created 2025-06-05 Thu 10:01
+% Intended LaTeX compiler: pdflatex
+\documentclass{myarticle}
+\author{Pulido}
+\date{\today}
+\title{Hyper-optimizacion de pares de activos.  Reporte 03/06/25}
+\hypersetup{
+ pdfauthor={Pulido},
+ pdftitle={Hyper-optimizacion de pares de activos.  Reporte 03/06/25},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\noindent\rule{\textwidth}{0.5pt}
+\section{Seleccion de pares de acuerdo al rendimiento}
+\label{sec:orgd8a89e0}
+
+Dado un sector, se realizan todas las combinaciones de pares posibles.
+
+Estos pares se utilizan para calcular un z-score entre ellos y para realizar una estrategia de entrenamiento de inversiones. Los 10-20 pares con mejor rendimiento son seleccionados para el periodo de testing.
+
+
+
+
+
+\noindent\rule{\textwidth}{0.5pt}
+\section{Optimizacion de hyper-parametros}
+\label{sec:org87974ac}
+
+Para todas las combinaciones de pares posibles se propone un rango de hiperparametros posibles, periodo de la ventana movil de los promedios del spread (o de la exponencial), periodo de computo del beta. Tambien los umbrales para entrar a una posicion \(\sigma_{compra}\) y para salir \(\sigma_{venta}\).
+
+Se realizan combinaciones de estos 4 parametros con conjuntos discretos (entre 400-1000 experimentos) y para cada par se estima el valor optimo de los parametros.
+
+\textbf{Que se utiliza como funcion de costo?}
+
+\begin{itemize}
+\item rendimiento neto del activo para tomar los parametros optimos de cada par.
+
+\item Sharpe ratio? podria obtener pares mas robustos a la hora del testing.
+\end{itemize}
+
+
+
+
+
+\noindent\rule{\textwidth}{0.5pt}
+\section{Experimentos}
+\label{sec:orgc887d67}
+
+
+\begin{itemize}
+\item \textbf{ON.} Promedio de ventana movil y beta con regresion lineal.
+
+\item \textbf{KF.} Promedio de ventana movil y beta con filtro de Kalman.
+
+\item \textbf{EXP.} Spread con promedio exponential y beta con regresion lineal.
+\end{itemize}
+
+
+
+
+
+
+\noindent\rule{\textwidth}{0.5pt}
+\section{Resultados}
+\label{sec:orgc2f7bae}
+
+\subsection{Rendimientos}
+\label{sec:org222723b}
+
+Se seleccionan los 10 mejores pares y se distribuye equitativamente la inversion.
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./fig/compara_capital_best_pairs.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./fig/compara_capital_total.png}
+\end{center}
+
+\textbf{Caveats:}
+
+\begin{enumerate}
+\item Este es el periodo de entrenamiento, NO hay testing.
+Aun cuando el esquema es on-line operativo, los pares se seleccionan por su rendimiento en el periodo.
+No se ha realizado un periodo de testing (TODO).
+
+\item Repeticion de activos en los pares.
+En los casos que se analizaron el sistema se concentra en acciones formadas con distintos pares esto le quita robustez a la hora del testing.
+\end{enumerate}
+
+
+\noindent\rule{\textwidth}{0.5pt}
+\subsection{Medidas de estacionaridad, vida media etc vs rendimiento.}
+\label{sec:org1eafc4d}
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./fig/best_pairs_asset_kf_1000_scatters.png}
+\end{center}
+
+
+Este analisis se realiza con los 50 activos que obtuvieron mayor rendimiento en el KF. Se muestran los scatterplot del johansen 95\% vs p-value. Como se esperaba, se ve una clara correlacion los valores johansen positivos corresponden a p-values \(<\) 0.3, aunqeu quizas johansen 90\% seria mas equiparable a p-value.
+
+En el caso de hurst vs half-life tambien queda claro que un hurst menor a .5 corresponde a bajos valores de half-life lo cual era lo esperable.
+
+Cuan correlacionados estan los rendimientos con distintas medidas de estacionaridad del spread? En principio poco podemos decir, con respecto a johansen tenemos buenos rendimientos con positivos y negativos. Tampoco el Hurst nos esta dando informacion relevante, existen varios pares de activos con exponente de Hurst \(> 0.5\) con buen rendimiento.
+
+Con respecto a los p-values hay en principio mayor cantidad de activos con grandes rendimientos cuyo p-value es \(< 0.3\).  Tambien se puede ver que los pares de activos con vidas medias menores a 100 tienen buen rendimiento aunque por supuesto esto no indica una relacion causal.
+
+
+\noindent\rule{\textwidth}{0.5pt}
+\subsection{Pares con mejores rendimientos}
+\label{sec:org522aa92}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./fig/best_pairs_asset_kf_1000_capital1.png}
+\end{center}
+
+Operaciones para el KF y los rendimientos en las posiciones en corto y largo
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./fig/best_pairs_asset_exp_1000_capital1.png}
+\end{center}
+
+Operaciones para el EXP y los rendimientos en las posiciones en corto y largo
+
+
+\noindent\rule{\textwidth}{0.5pt}
+\subsection{Parametros optimos}
+\label{sec:orgfa3236b}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{./fig/best_pairs_asset_exp_1000_parameters.png}
+\end{center}
+
+Parametros optimos para los 50 mejores activos en el experimento EXP.
+
+
+No se puede obtener una conclusion definitiva en terminos de los periodos para z-score y beta. Si en principo con respecto a los umbrales de compra venta, 1.4 y 0 serian los valores optimos en general.
+\end{document}

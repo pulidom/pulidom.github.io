@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-06-05 Thu 10:01 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hyper-optimizacion de pares de activos.  Reporte 03/06/25</title>
+<meta name="author" content="Pulido" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Hyper-optimizacion de pares de activos.  Reporte 03/06/25</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org82b0a8c">1. Seleccion de pares de acuerdo al rendimiento</a></li>
+<li><a href="#org694fba5">2. Optimizacion de hyper-parametros</a></li>
+<li><a href="#orgd67b268">3. Experimentos</a></li>
+<li><a href="#orgf01bb3e">4. Resultados</a>
+<ul>
+<li><a href="#org8201adf">4.1. Rendimientos</a></li>
+<li><a href="#org23b789a">4.2. Medidas de estacionaridad, vida media etc vs rendimiento.</a></li>
+<li><a href="#org5357fda">4.3. Pares con mejores rendimientos</a></li>
+<li><a href="#org2c47020">4.4. Parametros optimos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<hr />
+<div id="outline-container-org82b0a8c" class="outline-2">
+<h2 id="org82b0a8c"><span class="section-number-2">1.</span> Seleccion de pares de acuerdo al rendimiento</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Dado un sector, se realizan todas las combinaciones de pares posibles.
+</p>
+
+<p>
+Estos pares se utilizan para calcular un z-score entre ellos y para realizar una estrategia de entrenamiento de inversiones. Los 10-20 pares con mejor rendimiento son seleccionados para el periodo de testing.
+</p>
+
+<p>
+<br />
+<br />
+<br />
+</p>
+<hr />
+</div>
+</div>
+<div id="outline-container-org694fba5" class="outline-2">
+<h2 id="org694fba5"><span class="section-number-2">2.</span> Optimizacion de hyper-parametros</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Para todas las combinaciones de pares posibles se propone un rango de hiperparametros posibles, periodo de la ventana movil de los promedios del spread (o de la exponencial), periodo de computo del beta. Tambien los umbrales para entrar a una posicion \(\sigma_{compra}\) y para salir \(\sigma_{venta}\).
+</p>
+
+<p>
+Se realizan combinaciones de estos 4 parametros con conjuntos discretos (entre 400-1000 experimentos) y para cada par se estima el valor optimo de los parametros.
+</p>
+
+<p>
+<b>Que se utiliza como funcion de costo?</b>
+</p>
+
+<ul class="org-ul">
+<li>rendimiento neto del activo para tomar los parametros optimos de cada par.</li>
+
+<li>Sharpe ratio? podria obtener pares mas robustos a la hora del testing.</li>
+</ul>
+
+<p>
+<br />
+<br />
+<br />
+</p>
+<hr />
+</div>
+</div>
+<div id="outline-container-orgd67b268" class="outline-2">
+<h2 id="orgd67b268"><span class="section-number-2">3.</span> Experimentos</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><b>ON.</b> Promedio de ventana movil y beta con regresion lineal.</li>
+
+<li><b>KF.</b> Promedio de ventana movil y beta con filtro de Kalman.</li>
+
+<li><b>EXP.</b> Spread con promedio exponential y beta con regresion lineal.</li>
+</ul>
+
+
+<p>
+<br />
+<br />
+<br />
+</p>
+<hr />
+</div>
+</div>
+<div id="outline-container-orgf01bb3e" class="outline-2">
+<h2 id="orgf01bb3e"><span class="section-number-2">4.</span> Resultados</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org8201adf" class="outline-3">
+<h3 id="org8201adf"><span class="section-number-3">4.1.</span> Rendimientos</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Se seleccionan los 10 mejores pares y se distribuye equitativamente la inversion.
+</p>
+
+
+<div id="orgba18f86" class="figure">
+<p><img src="./fig/compara_capital_best_pairs.png" alt="compara_capital_best_pairs.png" />
+</p>
+</div>
+
+
+<div id="org4861257" class="figure">
+<p><img src="./fig/compara_capital_total.png" alt="compara_capital_total.png" />
+</p>
+</div>
+
+<p>
+<b>Caveats:</b>
+</p>
+
+<ol class="org-ol">
+<li>Este es el periodo de entrenamiento, NO hay testing.
+Aun cuando el esquema es on-line operativo, los pares se seleccionan por su rendimiento en el periodo.
+No se ha realizado un periodo de testing (TODO).</li>
+
+<li>Repeticion de activos en los pares.
+En los casos que se analizaron el sistema se concentra en acciones formadas con distintos pares esto le quita robustez a la hora del testing.</li>
+</ol>
+
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org23b789a" class="outline-3">
+<h3 id="org23b789a"><span class="section-number-3">4.2.</span> Medidas de estacionaridad, vida media etc vs rendimiento.</h3>
+<div class="outline-text-3" id="text-4-2">
+
+<div id="org22c2cbe" class="figure">
+<p><img src="./fig/best_pairs_asset_kf_1000_scatters.png" alt="best_pairs_asset_kf_1000_scatters.png" />
+</p>
+</div>
+
+
+<p>
+Este analisis se realiza con los 50 activos que obtuvieron mayor rendimiento en el KF. Se muestran los scatterplot del johansen 95% vs p-value. Como se esperaba, se ve una clara correlacion los valores johansen positivos corresponden a p-values \(<\) 0.3, aunqeu quizas johansen 90% seria mas equiparable a p-value.
+</p>
+
+<p>
+En el caso de hurst vs half-life tambien queda claro que un hurst menor a .5 corresponde a bajos valores de half-life lo cual era lo esperable.
+</p>
+
+<p>
+Cuan correlacionados estan los rendimientos con distintas medidas de estacionaridad del spread? En principio poco podemos decir, con respecto a johansen tenemos buenos rendimientos con positivos y negativos. Tampoco el Hurst nos esta dando informacion relevante, existen varios pares de activos con exponente de Hurst \(> 0.5\) con buen rendimiento.
+</p>
+
+<p>
+Con respecto a los p-values hay en principio mayor cantidad de activos con grandes rendimientos cuyo p-value es \(< 0.3\).  Tambien se puede ver que los pares de activos con vidas medias menores a 100 tienen buen rendimiento aunque por supuesto esto no indica una relacion causal.
+</p>
+
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org5357fda" class="outline-3">
+<h3 id="org5357fda"><span class="section-number-3">4.3.</span> Pares con mejores rendimientos</h3>
+<div class="outline-text-3" id="text-4-3">
+
+<div id="orged0f005" class="figure">
+<p><img src="./fig/best_pairs_asset_kf_1000_capital1.png" alt="best_pairs_asset_kf_1000_capital1.png" />
+</p>
+</div>
+
+<p>
+Operaciones para el KF y los rendimientos en las posiciones en corto y largo
+</p>
+
+
+<div id="orgf716978" class="figure">
+<p><img src="./fig/best_pairs_asset_exp_1000_capital1.png" alt="best_pairs_asset_exp_1000_capital1.png" />
+</p>
+</div>
+
+<p>
+Operaciones para el EXP y los rendimientos en las posiciones en corto y largo
+</p>
+
+
+<hr />
+</div>
+</div>
+<div id="outline-container-org2c47020" class="outline-3">
+<h3 id="org2c47020"><span class="section-number-3">4.4.</span> Parametros optimos</h3>
+<div class="outline-text-3" id="text-4-4">
+
+<div id="orgf893d91" class="figure">
+<p><img src="./fig/best_pairs_asset_exp_1000_parameters.png" alt="best_pairs_asset_exp_1000_parameters.png" />
+</p>
+</div>
+
+<p>
+Parametros optimos para los 50 mejores activos en el experimento EXP.
+</p>
+
+
+<p>
+No se puede obtener una conclusion definitiva en terminos de los periodos para z-score y beta. Si en principo con respecto a los umbrales de compra venta, 1.4 y 0 serian los valores optimos en general.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pulido</p>
+<p class="date">Created: 2025-06-05 Thu 10:01</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
