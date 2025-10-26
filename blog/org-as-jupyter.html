@@ -1,0 +1,417 @@
+<!DOC html>
+<html>
+<head>
+<style type="text/css">
+<!-- @import url('/software/emacs/manual.css'); -->
+@import url('../style.css');
+</style>
+</head>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
+
+<body>
+
+<ul  class="navbar">
+  <li class="navbar" style="float:left"> <a href="../index.html">Manuel Pulido</a> </li>
+  <li class="navbar"><a href="../index.html">Home</a></li>
+  <li class="navbar"><a  href="../publications.html">Publications</a></li>
+  <li class="navbar"><a href="../soft.html">Soft</a></li>
+  <li class="navbar"><a href="../blog.html">Blog</a></li>
+  <li class="navbar"><a  href="../about.html">About</a></li>
+</ul>
+  <br>
+<h2>org-mode as jupyter notebooks</h2>
+<div id="outline-container-org069ac7f" class="outline-3">
+<h3 id="org069ac7f"><span class="section-number-3">0.22.</span> <span class="timestamp-wrapper"><span class="timestamp">[2025-02-02 Sun] </span></span> org-mode as jupyter notebooks</h3>
+<div class="outline-text-3" id="text-0-22">
+<p>
+Las celdas se puede generar con ctrl+c s, la cual genera el texto:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+</pre>
+</div>
+<p>
+dentro de este texto se ponen el codigo python.
+</p>
+
+<p>
+Para ejecutar la celda se hace: ctrl+c ctrl+c
+</p>
+
+<p>
+Al ejecutar se manda el codigo de la celda a una terminal.
+Esto se maneja a traves de una terminal, la cual conviene tener a la vista, en general suelo hacer
+ctrl+x 3 para que me parta la ventana emacs en dos columnas y luego en la ventana emacs de la derecha
+pongo la terminal python (ctrl + right para ir a la ventana, y alt right/left para buscar la terminal
+entre los buffers).
+</p>
+
+<p>
+Para graficar se hace:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">plt.savefig(plot_filename)
+plot_filename
+</pre>
+</div>
+
+<p>
+Eso hace que se genere link con la figura y si he puesto el cabezal:
+</p>
+<p>
+me pondra las figuras embebidas.
+</p>
+
+<p>
+Trabajar con orgmode permite tener el codigo estructurado jerarquicamente por lo que
+</p>
+<p>
+o con shift-tab me va a esconder todo el codigo/celdas y dejar solo los titulos.
+</p>
+
+<p>
+Por otro lado tambien tengo las posibilidades de exportar el archivo a latex o html, mezclando con ecuaciones
+matematicas y demas cuestiones.
+</p>
+
+
+<p>
+Ejemplo de codigo en este formato notebook lo tengo en:
+</p>
+
+<p>
+<a href="file:///home/pulido/ass/modide/pierre/rnn.html">file:///home/pulido/ass/modide/pierre/rnn.html</a>
+</p>
+
+<p>
+Esto se puede facilmente utilizar remotamente ya sea con la terminal emacs en el servidor remoto
+y en ese caso se trabaja directamente en el remoto muy eficientemente (excepto la posiblidad de exportar
+los graficos) o tambien usando emacs tramp. En este caso se podria transferir los graficos en forma
+relativamente transparente sin embargo se me cual el emacs numerosas veces (perdiendo lo que no estaba grabado)
+y no lo recomiendo.
+</p>
+
+<p>
+Tambien hay que tener cuidado cuando requiere de mucho tiempo de ejecucion porque en ese caso se queda pensando
+y no me deja editar ni ese ni otros archivos. Existe la posibilidad de asyncronomous aunque no se si
+eso se puede utilizar con las sesiones.
+</p>
+
+<p>
+Notar que se puede usar multiples sesiones directamente poniendoles un nombre a cada una de ellas (entiendo esto genera
+un interprete python por cada sesion?).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+</pre>
+</div>
+
+<p>
+Si se quiere mirar todos las posibilidades de salida de los resultados se pueden encontrar en el manual de orgmode:
+</p>
+
+<p>
+<a href="https://orgmode.org/manual/Results-of-Evaluation.html">https://orgmode.org/manual/Results-of-Evaluation.html</a>
+</p>
+
+<p>
+En el interprete puedo consultar sobre las shape y los valores de variables, por el help y demas.
+</p>
+
+<p>
+Por alguna razon he intentado con el ipython como:
+</p>
+<div class="org-src-container">
+<pre class="src src-ipython">
+</pre>
+</div>
+<p>
+sin embargo este no me deja la terminal abierta (no la veo).
+</p>
+
+<p>
+Una alternativa seria definir el python interprete de orgmode con python -m ipython aunque no lo he probado.
+</p>
+
+<p>
+Generalmente si lo que hay que ejecutar es muy largo conviene que sea asyncronimo async para que se pueda seguir editando.   The ob-async package does not support the :session header, but ob-session-async does and it was merged into the standard library as of Org 9.5.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(setq org-edit-src-content-indentation 0)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t) (latex . t)  
+   (shell . t) (ipython . t)))
+(setq org-babel-python-command <span style="color: #ffa07a;">"python3"</span>)<span style="color: #ff7f24;">;; </span>
+(setq org-babel-ipython-command <span style="color: #ffa07a;">"ipython3"</span>)<span style="color: #ff7f24;">;; </span>
+(<span style="color: #00ffff;">defun</span> <span style="color: #87cefa;">insert-debug</span> ()
+  <span style="color: #ffa07a;">"Insert debug python."</span>
+  (interactive)
+  (newline-and-indent)
+  (insert <span style="color: #ffa07a;">"import pdb; pdb.set_trace()"</span>) )
+
+(global-set-key <span style="color: #ffa07a;">"\C-cd"</span> 'insert-debug)
+<span style="color: #ff7f24;">;;;; </span><span style="color: #ff7f24;">Para generar una celda python con el begin_src. </span>
+(add-hook 'org-mode-hook
+          (<span style="color: #00ffff;">lambda</span> ()
+            <span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">keybinding for inserting code blocks</span>
+            (local-set-key (kbd <span style="color: #ffa07a;">"C-c s"</span>) 'org-insert-src-block)))
+(global-set-key <span style="color: #ffa07a;">"\C-cs"</span> 'org-insert-src-block)
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #87cefa;">org-insert-src-block</span> ()
+  (interactive) 
+  (insert <span style="color: #ffa07a;">"#+BEGIN_SRC python :session :results output</span>
+
+<span style="color: #ffa07a;">         """</span>#+END_SRC<span style="color: #ffa07a;">"""</span>
+<span style="color: #ffa07a;">"</span>)
+  (forward-line -3)
+  (goto-char (line-end-position))
+  )
+<span style="color: #ff7f24;">;;</span>
+
+</pre>
+</div>
+
+<p>
+Tuve que comentar la indentacion que tenia en python porque me generaba problemas en el org-mode:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #ff7f24;">;;</span><span style="color: #ff7f24;">(custom-set-variables</span>
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">'(python-guess-indent nil)</span>
+<span style="color: #ff7f24;">;; </span><span style="color: #ff7f24;">'(python-indent 4))</span>
+</pre>
+</div>
+
+
+<p>
+Se puede exportar los pedazos de codigo a un archivo para ejecutar codigo:
+</p>
+
+<p>
+<a href="https://orgmode.org/manual/Extracting-Source-Code.html">https://orgmode.org/manual/Extracting-Source-Code.html</a>
+</p>
+
+<p>
+En ese caso hay que agregar al cabezal: :tangle "init.el"
+</p>
+
+<p>
+``
+</p>
+</div>
+</div>
+
+</body>
+</html>
